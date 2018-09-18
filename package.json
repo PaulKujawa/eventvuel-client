@@ -1,0 +1,21 @@
+{
+  "name": "ab-testing",
+  "scripts": {
+    "build:dev": "vue-cli-service serve",
+    "build:prod": "vue-cli-service build"
+  },
+  "dependencies": {
+    "vue": "^2.5.17",
+    "vue-class-component": "^6.2.0",
+    "vue-property-decorator": "^7.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.3",
+    "@vue/cli-plugin-typescript": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
+    "typescript": "^3.0.3",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "license": "ISC"
+}
