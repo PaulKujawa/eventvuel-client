@@ -1,34 +1,29 @@
 <template>
-    <div id="app">
-        <div id="nav">
-            <router-link :to="{name: 'home'}">Home</router-link> |
-            <router-link :to="{name: 'about', params: {id: 1}}">About</router-link>
-        </div>
+  <v-app>
+    <!-- <v-navigation-drawer app></v-navigation-drawer> -->
 
-        <router-view/>
-    </div>
+    <v-toolbar app>
+      <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
+      <v-toolbar-title>Vegain</v-toolbar-title>
+    </v-toolbar>
+
+    <v-content>
+      <v-container fluid>
+        <router-view></router-view>
+      </v-container>
+    </v-content>
+
+    <v-footer app class="pa-3">
+      <v-spacer></v-spacer>
+      <div>&copy; {{ new Date().getFullYear() }}</div>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-}
+<script lang="ts">
+import {Component, Prop, Vue} from 'vue-property-decorator';
 
-#nav {
-    padding: 30px;
+@Component({})
+export default class App extends Vue {
 }
-
-#nav a {
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-    color: #42b983;
-}
-</style>
+</script>

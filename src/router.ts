@@ -1,20 +1,24 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '@/views/Home.vue'
+import RecipeList from '@/views/RecipeList.vue';
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      redirect: '/recipes',
     },
     {
-      path: '/about/:id',
-      name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
-    }
-  ]
-})
+      path: '/recipes',
+      name: 'recipe-list',
+      component: RecipeList,
+    },
+    {
+      path: '/recipes/:id',
+      name: 'recipe',
+      component: () => import(/* webpackChunkName: "about" */ '@/views/Recipe.vue'),
+    },
+  ],
+});
