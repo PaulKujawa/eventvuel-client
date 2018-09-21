@@ -1,5 +1,5 @@
 {
-  "name": "ab-testing",
+  "name": "vegain",
   "scripts": {
     "build:dev": "vue-cli-service serve",
     "build:prod": "vue-cli-service build"
@@ -8,7 +8,8 @@
     "vue": "^2.5.17",
     "vue-class-component": "^6.2.0",
     "vue-property-decorator": "^7.0.0",
-    "vuetify": "^1.0.19"
+    "vuetify": "^1.0.19",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.0.0-beta.49",

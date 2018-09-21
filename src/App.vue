@@ -8,7 +8,7 @@
     </v-toolbar>
 
     <v-content>
-      <v-container fluid>
+      <v-container fluid grid-list-lg>
         <router-view></router-view>
       </v-container>
     </v-content>
