@@ -1,5 +1,5 @@
-import {profile} from '@/store/modules/profile/index';
-import {RootState} from '@/store/types';
+import { recipe } from '@/store/modules/recipe/index';
+import { RootState } from '@/store/types';
 import Vue from 'vue';
 import Vuex from 'vuex';
 
@@ -11,6 +11,6 @@ export default new Vuex.Store<RootState>({
     version: '1.0.0',
   },
   modules: {
-      profile,
+    recipe,
   },
 });
