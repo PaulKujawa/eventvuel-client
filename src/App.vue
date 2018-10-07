@@ -8,7 +8,7 @@
     </v-toolbar>
 
     <v-content>
-      <v-container fluid>
+      <v-container fluid grid-list-lg>
         <router-view></router-view>
       </v-container>
     </v-content>
@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, Vue} from 'vue-property-decorator';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class App extends Vue {
