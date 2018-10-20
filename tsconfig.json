@@ -16,7 +16,14 @@
       "@/*": [
         "src/*"
       ]
-    }
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "es6",
+      "esnext.asynciterable",
+      "scripthost",
+    ]
   },
   "include": [
     "src/**/*.ts",

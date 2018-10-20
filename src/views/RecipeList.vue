@@ -1,32 +1,34 @@
 <template>
   <v-layout row wrap>
-    <v-flex
-      v-for="recipe in recipeState.recipes.docs"
-      :key="recipe.id"
+     <v-flex
+      v-for="book in books" :key="book.id"
       xs12 sm6 md4
     >
-      <RecipeCard :recipe="recipe"></RecipeCard>
+      <RecipeCard :book="book"></RecipeCard>
     </v-flex>
   </v-layout>
 </template>
 
 <script lang="ts">
 import RecipeCard from '@/components/RecipeCard.vue';
-import { RecipeState } from '@/store/modules/recipe/types';
+import * as AllBooks from '@/graphql/AllBooks.gql';
 import { Component, Vue } from 'vue-property-decorator';
-import { Action, State } from 'vuex-class';
 
 @Component({
   components: {
     RecipeCard,
   },
+  apollo: {
+    books: {query: AllBooks},
+  },
 })
 export default class RecipeList extends Vue {
-  @State((state) => state.recipe) public recipeState!: RecipeState;
-  @Action('fetchRecipes', {namespace: 'recipe'}) public fetchRecipes!: () => void;
-
-  public mounted(): void {
-    this.fetchRecipes();
-  }
+  public books = [];
 }
 </script>
+
+<style lang="scss">
+.placeholder {
+  background-color: $foo;
+}
+</style>

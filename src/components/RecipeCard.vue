@@ -4,10 +4,8 @@
 
     <v-card-title primary-title>
       <div>
-        <h3 class="headline mb-0">{{ recipe.name }}</h3>
-        <p>
-          {{ recipe.vegan ? 'Vegan' : 'Non-Vegan' }} portions: {{ recipe.servings }} {{ times }}
-        </p>
+        <h3 class="headline mb-0">{{ book.title }}</h3>
+        <p>{{ book.author }}</p>
       </div>
     </v-card-title>
 
@@ -19,24 +17,11 @@
 </template>
 
 <script lang="ts">
-import { Recipe } from '@/store/modules/recipe/types';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class RecipeCard extends Vue {
-  @Prop() public recipe!: Recipe;
-  private url = 'https://loremflickr.com/500/270/recipe,healthy?random=' + this.recipe.id;
-
-  get times(): string {
-    if (!this.recipe.preparation_time || !this.recipe.cook_time) {
-      return '';
-    }
-
-    return `${this.recipe.preparation_time} / ${this.recipe.cook_time}`
-  }
+  @Prop() public book!: {id: number, title: string, author: string};
+  private url = 'https://loremflickr.com/500/270/recipe,healthy?random=' + this.book.id;
 }
 </script>
-
-<style scoped lang="scss">
-@import '../css/_variables.scss';
-</style>
