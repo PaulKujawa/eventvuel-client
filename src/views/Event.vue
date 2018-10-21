@@ -1,6 +1,6 @@
 <template>
-  <div class="recipe">
-    recipe detail view
+  <div class="event">
+    event detail view
   </div>
 </template>
 
@@ -8,6 +8,6 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
-export default class Recipe extends Vue {
+export default class Event extends Vue {
 }
 </script>

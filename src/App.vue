@@ -3,8 +3,8 @@
     <!-- <v-navigation-drawer app></v-navigation-drawer> -->
 
     <v-toolbar app>
-      <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
-      <v-toolbar-title>Vegain</v-toolbar-title>
+      <v-toolbar-side-icon></v-toolbar-side-icon>
+      <v-toolbar-title>Eventvuel</v-toolbar-title>
     </v-toolbar>
 
     <v-content>

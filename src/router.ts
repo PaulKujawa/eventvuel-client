@@ -1,4 +1,4 @@
-import RecipeList from '@/views/RecipeList.vue';
+import EventList from '@/views/EventList.vue';
 import Vue from 'vue';
 import Router from 'vue-router';
 
@@ -8,17 +8,17 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/recipes',
+      redirect: '/events',
     },
     {
-      path: '/recipes',
-      name: 'recipe-list',
-      component: RecipeList,
+      path: '/events',
+      name: 'event-list',
+      component: EventList,
     },
     {
-      path: '/recipes/:id',
-      name: 'recipe',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/Recipe.vue'),
+      path: '/events/:id',
+      name: 'event',
+      component: () => import(/* webpackChunkName: "about" */ '@/views/Event.vue'),
     },
   ],
 });

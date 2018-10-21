@@ -1,0 +1,14 @@
+query mostRelevantEvents {
+    mostRelevantEvents {
+        name
+        dates {
+            start {
+                localDate
+                localTime
+            }
+        }
+        image {
+            url
+        }
+    }
+}
