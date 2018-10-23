@@ -6,10 +6,12 @@ import VueApollo from 'vue-apollo';
 
 Vue.use(VueApollo);
 
+const uri = process.env.NODE_ENV !== 'production'
+  ? 'http://localhost:4000'
+  : 'https://eventvuel-server.now.sh';
+
 function getClient(): ApolloClient<NormalizedCacheObject> {
-  const link = new HttpLink({
-    uri: 'http://localhost:4000/graphql',
-  });
+  const link = new HttpLink({ uri });
 
   return new ApolloClient({
     link,
@@ -32,35 +34,3 @@ export function createProvider() {
     },
   });
 }
-
-// // Manually call this when user log in
-// export async function onLogin(apolloClient: any, token: any) {
-//   if (typeof localStorage !== 'undefined' && token) {
-//     localStorage.setItem(AUTH_TOKEN, token);
-//   }
-
-//   // restartWebsockets(apolloClient.wsClient);
-
-//   try {
-//     await apolloClient.resetStore();
-//   } catch (e) {
-//     // eslint-disable-next-line no-console
-//     window.console.log('%cError on cache reset (login)', 'color: orange;', e.message);
-//   }
-// }
-
-// // Manually call this when user log out
-// export async function onLogout(apolloClient: any) {
-//   if (typeof localStorage !== 'undefined') {
-//     localStorage.removeItem(AUTH_TOKEN);
-//   }
-
-//   // restartWebsockets(apolloClient.wsClient);
-
-//   try {
-//     await apolloClient.resetStore();
-//   } catch (e) {
-//     // eslint-disable-next-line no-console
-//     window.console.log('%cError on cache reset (logout)', 'color: orange;', e.message);
-//   }
-// }
