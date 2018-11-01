@@ -1,0 +1,20 @@
+{
+    "name": "eventvuel-client",
+    "alias": "eventvuel-client",
+    "env": {
+        "NODE_ENV": "production"
+    },
+    "type": "static",
+    "static": {
+        "public": "dist",
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    },
+    "files": [
+        "dist"
+    ]
+}
