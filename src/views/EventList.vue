@@ -1,6 +1,19 @@
 <template>
   <v-layout row wrap>
-     <v-flex
+    <v-flex xs12>
+      <v-text-field
+        v-model="city"
+        label="City"
+        required
+      ></v-text-field>
+    </v-flex>
+
+    <v-progress-linear
+      v-if="$apollo.queries.mostRelevantEvents.loading"
+      :indeterminate="true"
+    ></v-progress-linear>
+
+    <v-flex
       v-for="event in mostRelevantEvents" :key="event.id"
       xs12 sm6 md4
     >
@@ -19,11 +32,20 @@ import { Component, Vue } from 'vue-property-decorator';
     EventCard,
   },
   apollo: {
-    mostRelevantEvents: {query: MostRelevantEvents},
+    mostRelevantEvents: {
+      query: MostRelevantEvents,
+      variables() {
+        return {
+          city: this.city,
+        };
+      },
+      debounce: 300,
+    },
   },
 })
 export default class EventList extends Vue {
   public mostRelevantEvents = [];
+  public city = 'Berlin';
 }
 </script>
 

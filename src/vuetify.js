@@ -8,7 +8,9 @@ import {
   VGrid,
   VIcon,
   VImg,
+  VTextField,
   VList,
+  VProgressLinear,
   VToolbar,
   transitions
 } from 'vuetify'
@@ -23,7 +25,9 @@ Vue.use(Vuetify, {
     VGrid,
     VIcon,
     VImg,
+    VTextField,
     VList,
+    VProgressLinear,
     VToolbar,
     transitions
   },

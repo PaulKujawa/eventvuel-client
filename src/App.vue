@@ -13,10 +13,10 @@
       </v-container>
     </v-content>
 
-    <v-footer app class="pa-3">
+    <!-- <v-footer app class="pa-3">
       <v-spacer></v-spacer>
       <div>&copy; {{ new Date().getFullYear() }}</div>
-    </v-footer>
+    </v-footer> -->
   </v-app>
 </template>
 

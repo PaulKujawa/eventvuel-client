@@ -11,10 +11,8 @@ const uri = process.env.NODE_ENV !== 'production'
   : 'https://eventvuel-server.now.sh';
 
 function getClient(): ApolloClient<NormalizedCacheObject> {
-  const link = new HttpLink({ uri });
-
   return new ApolloClient({
-    link,
+    link: new HttpLink({ uri }),
     cache: new InMemoryCache(),
     connectToDevTools: process.env.NODE_ENV !== 'production',
   });
