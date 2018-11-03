@@ -1,19 +1,20 @@
-# GraphQL client for eventvuel.
+# GraphQL client for Tickermaster
 
+## Run locally
 Start with `npm start`.
 
 ## tech stack
 |name               |purpose|
 |---                |---|
-|Deployment         | Now|
-|Vue                | JS framework|
-|Typescript & Babel | JS static typing|
-|TsLint             | JS Linting|
-|Apollo Client      | GraphQL client|
-|Webpack            | Bundler|
-|Vuetify            | UI framework|
-|SASS               | CSS preprocessor|
-|PostCSS            | CSS auto-prefixer|
+|Now                |Deployment|
+|Vue                |JS framework|
+|Typescript & Babel |JS static typing|
+|TsLint             |JS Linting|
+|Apollo Client      |GraphQL client|
+|Webpack            |Bundler|
+|Vuetify            |UI framework|
+|SASS               |CSS preprocessor|
+|PostCSS            |CSS auto-prefixer|
 
 ## Browser support
 - Edge 17

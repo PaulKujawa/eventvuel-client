@@ -1,8 +1,6 @@
 <template>
   <v-card :hover="true">
-    <v-img
-      :src="event.image.url"
-    ></v-img>
+    <v-img :src="url"></v-img>
 
     <v-card-title primary-title>
       <div>
@@ -30,11 +28,15 @@ interface Event {
       localTime?: string;
     };
   };
-  image: {url: string};
+  images: Array<{url: string, width: number}>;
 }
 
 @Component({})
 export default class EventCard extends Vue {
   @Prop() public event!: Event;
+
+  get url() {
+    return this.event.images.find((image) => image.width === 640)!.url;
+  }
 }
 </script>
