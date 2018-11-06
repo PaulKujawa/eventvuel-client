@@ -1,0 +1,18 @@
+query EventsPage($page: Int!, $city: String!) {
+    eventsPage(page: $page, city: $city) {
+        events {
+            name
+            dates {
+                start {
+                    localDate
+                    localTime
+                }
+            }
+            images {
+                url
+                width
+            }
+        }
+        hasMore
+    }
+}
