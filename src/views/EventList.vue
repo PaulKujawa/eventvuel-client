@@ -8,51 +8,50 @@
       ></v-text-field>
     </v-flex>
 
-    <v-progress-linear
-      v-if="$apollo.queries.eventsPage.loading"
-      :indeterminate="true"
-    ></v-progress-linear>
+    <ApolloQuery
+      :query="require('@/graphql/EventsPage.gql')"
+      :variables="{ page: 0, city }"
+      :debounce="300"
+    >
+      <template slot-scope="{ result: { loading, error, data } }">
+        <v-progress-linear
+          v-if="loading"
+          :indeterminate="true"
+        ></v-progress-linear>
 
-    <template v-if="eventsPage">
-      <v-flex
-        v-for="event in eventsPage.events" :key="event.id"
-        xs12 sm6 md4 lg3
-      >
-        <EventCard :event="event"></EventCard>
-      </v-flex>
+        <div v-else-if="error" class="error apollo">An error occured</div>
 
-      <v-flex xs12>
-        <v-btn color="info"
-          v-if="eventsPage.hasMore"
-          @click="showMore"
-        >
-          Show more
-        </v-btn>
-      </v-flex>
-    </template>
+        <div v-else-if="data">
+          <v-flex
+            v-for="event in data.eventsPage.events" :key="event.id"
+            xs12 sm6 md4 lg3
+          >
+            <EventCard :event="event"></EventCard>
+          </v-flex>
+
+          <v-flex xs12>
+            <v-btn color="info"
+              v-if="data.eventsPage.hasMore"
+              @click="showMore"
+            >
+              Show more
+            </v-btn>
+          </v-flex>
+        </div>
+
+        <div v-else class="no-result apollo">No result :(</div>
+      </template>              
+    </ApolloQuery>
   </v-layout>
 </template>
 
 <script lang="ts">
 import EventCard from '@/components/EventCard.vue';
-import * as EventsPage from '@/graphql/EventsPage.gql';
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   components: {
     EventCard,
-  },
-  apollo: {
-    eventsPage: {
-      query: EventsPage,
-      variables() {
-        return {
-          page: 0,
-          city: this.city,
-        };
-      },
-      debounce: 300,
-    },
   },
 })
 export default class EventList extends Vue {
