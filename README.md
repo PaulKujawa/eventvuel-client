@@ -1,7 +1,7 @@
 # GraphQL client for Tickermaster
 
 ## Run locally
-Start with `npm start`.
+1. Start with `npm start`.
 
 ## tech stack
 |name               |purpose|

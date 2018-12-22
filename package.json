@@ -11,7 +11,7 @@
   "scripts": {
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy": "npm run build && now --public",
+    "deploy": "npm run build && now --public && now alias",
     "webpack-config": "vue-cli-service inspect --mode production"
   },
   "dependencies": {

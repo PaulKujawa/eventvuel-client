@@ -35,7 +35,7 @@ interface Event {
 export default class EventCard extends Vue {
   @Prop() public event!: Event;
 
-  get url() {
+  get url(): string {
     return this.event.images.find((image) => image.width === 640)!.url;
   }
 }

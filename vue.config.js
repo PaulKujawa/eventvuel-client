@@ -13,7 +13,7 @@ module.exports = {
 
         config.module
             .rule('gql')
-            .test(/\.(gql|graphql)$/)
+            .test(/\.gql$/)
             .use('graphql-tag/loader')
               .loader('graphql-tag/loader')
               .end()
