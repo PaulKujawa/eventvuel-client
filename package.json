@@ -12,7 +12,10 @@
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "deploy": "npm run build && now --public && now alias",
-    "webpack-config": "vue-cli-service inspect --mode production"
+    "webpack-config": "vue-cli-service inspect --mode production",
+    "apollo-codegen": "npm run apollo-codegen-json && npm run apollo-codegen-ts",
+    "apollo-codegen-json": "apollo service:download ./src/graphql/schema.json",
+    "apollo-codegen-ts": "apollo client:codegen --target typescript --localSchemaFile ./src/graphql/schema.json --includes ./src/**/*.gql"
   },
   "dependencies": {
     "ajv": "^6.5.4",
@@ -38,6 +41,7 @@
     "@vue/cli-plugin-babel": "^3.0.5",
     "@vue/cli-plugin-typescript": "^3.0.5",
     "@vue/cli-service": "^3.0.5",
+    "apollo": "^2.1.8",
     "babel-plugin-transform-imports": "^1.4.1",
     "sass-loader": "^7.1.0",
     "sass-resources-loader": "^1.3.4",
