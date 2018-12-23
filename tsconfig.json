@@ -8,17 +8,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "experimentalDecorators": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": [
-      "node"
-    ],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
     "lib": [
       "dom",

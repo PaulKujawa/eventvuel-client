@@ -5,3 +5,6 @@ node_modules
 # Editor directories and files
 .idea
 .vscode
+
+# GraphQL and Apollo
+/__generated__

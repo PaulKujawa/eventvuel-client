@@ -17,25 +17,14 @@
 </template>
 
 <script lang="ts">
+import { EventsPage_eventsPage_events } from '@/graphql/__generated__/Eventspage';
 import { Component, Prop, Vue } from 'vue-property-decorator';
-
-interface Event {
-  id: string;
-  name: string;
-  dates: {
-    start: {
-      localDate: string;
-      localTime?: string;
-    };
-  };
-  images: Array<{url: string, width: number}>;
-}
 
 @Component({})
 export default class EventCard extends Vue {
-  @Prop() public event!: Event;
+  @Prop() public event!: EventsPage_eventsPage_events;
 
-  get url() {
+  get url(): string {
     return this.event.images.find((image) => image.width === 640)!.url;
   }
 }
