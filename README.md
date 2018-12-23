@@ -1,7 +1,14 @@
-# GraphQL client for Tickermaster
+# GraphQL client for Ticketmaster
 
-## Run locally
-1. Start with `npm start`.
+## Contribute
+* Start with `npm start`
+* GraphQL-TypeScript-Schema can be updated with
+```
+apollo client:codegen \
+  --endpoint http://localhost:4000 \
+  --includes src/**/*.gql \
+  --target typescript
+```
 
 ## tech stack
 |name               |purpose|

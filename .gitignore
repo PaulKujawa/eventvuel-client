@@ -7,4 +7,4 @@ node_modules
 .vscode
 
 # GraphQL and Apollo
-src/graphql/schema.json
+/__generated__
