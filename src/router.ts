@@ -16,6 +16,26 @@ export default new Router({
       component: EventList,
     },
     {
+      path: '/concert-events',
+      name: 'event-list-concerts',
+      component: EventList,
+    },
+    {
+      path: '/sport-events',
+      name: 'event-list-sports',
+      component: EventList,
+    },
+    {
+      path: '/art-events',
+      name: 'event-list-arts',
+      component: EventList,
+    },
+    {
+      path: '/miscellaneous-events',
+      name: 'event-list-miscellaneous',
+      component: EventList,
+    },
+    {
       path: '/events/:id',
       name: 'event',
       component: () => import(/* webpackChunkName: "event" */ '@/views/Event.vue'),

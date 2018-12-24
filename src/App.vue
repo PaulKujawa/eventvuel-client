@@ -1,10 +1,34 @@
 <template>
   <v-app>
-    <!-- <v-navigation-drawer app></v-navigation-drawer> -->
+    <v-navigation-drawer app v-model="drawerOpen">
+      <v-list>
+        <v-list-tile v-for="item of menuItems" :key="item.title" :to="item.path">
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+
+          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
 
     <v-toolbar app>
-      <v-toolbar-side-icon></v-toolbar-side-icon>
-      <v-toolbar-title>Eventvuel</v-toolbar-title>
+      <span class="hidden-sm-and-up">
+        <v-toolbar-side-icon @click="drawerOpen = !drawerOpen"></v-toolbar-side-icon>
+      </span>
+
+      <v-toolbar-title>
+        <router-link to="/" tag="span" style="cursor: pointer">{{ appTitle }}</router-link>
+      </v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-toolbar-items class="hidden-xs-only">
+        <v-btn flat v-for="item in menuItems" :key="item.title" :to="item.path">
+          <v-icon left>{{ item.icon }}</v-icon>
+          {{ item.title }}
+        </v-btn>
+      </v-toolbar-items>
     </v-toolbar>
 
     <v-content>
@@ -25,5 +49,13 @@ import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class App extends Vue {
+  public appTitle = 'Eventvuel';
+  public drawerOpen = false;
+  public menuItems = [
+    { title: 'Concerts', path: '/concert-events', icon: 'music_note' },
+    { title: 'Sports', path: '/sport-events', icon: 'directions_bike' },
+    { title: 'Arts & Theater', path: '/art-events', icon: 'brush' },
+    { title: 'Miscellaneous', path: '/miscellaneous-events', icon: 'place' },
+  ];
 }
 </script>
