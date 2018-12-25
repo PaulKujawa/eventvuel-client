@@ -23,14 +23,17 @@
 <script lang="ts">
 import EventCard from '@/components/EventCard.vue';
 import * as gqlEventsPage from '@/graphql/EventsPage.gql';
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import { Route } from 'vue-router';
 
 @Component({
   components: { EventCard },
   apollo: {
     eventsPage: {
       query: gqlEventsPage,
-      variables() { return { page: 0, city: this.city, classification: 'KZFzniwnSyZfZ7v7n1' }; },
+      variables() {
+        return { page: 0, city: this.city, classification: this.classification || undefined };
+      },
       debounce: 300,
     },
   },
@@ -38,10 +41,16 @@ import { Component, Vue } from 'vue-property-decorator';
 export default class EventList extends Vue {
   public city = 'London';
   private page = 0;
-  private classification = 'KZFzniwnSyZfZ7v7nJ';
+  private classification: string | null = null;
+
+  @Watch('$route', { immediate: true })
+  public onRouteChanged(to: Route) {
+    this.classification = to.meta.classificationId || null;
+  }
 
   public showMore() {
     this.page++;
+
     this.$apollo.queries.eventsPage.fetchMore({
       variables: { page: this.page, city: this.city, classification: this.classification },
       updateQuery: (previousResult, { fetchMoreResult }) => ({
