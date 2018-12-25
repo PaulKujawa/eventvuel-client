@@ -12,7 +12,7 @@
       </v-flex>
 
       <v-flex xs12>
-        <v-btn v-if="eventsPage.hasMore" @click="showMore" color="info">
+        <v-btn v-if="eventsPage.hasMore" @click="showMore" color="secondary">
           Show more
         </v-btn>
       </v-flex>
@@ -30,19 +30,20 @@ import { Component, Vue } from 'vue-property-decorator';
   apollo: {
     eventsPage: {
       query: gqlEventsPage,
-      variables() { return { page: 0, city: this.city }; },
+      variables() { return { page: 0, city: this.city, classification: 'KZFzniwnSyZfZ7v7n1' }; },
       debounce: 300,
     },
   },
 })
 export default class EventList extends Vue {
-  public city = 'Berlin';
+  public city = 'London';
   private page = 0;
+  private classification = 'KZFzniwnSyZfZ7v7nJ';
 
   public showMore() {
     this.page++;
     this.$apollo.queries.eventsPage.fetchMore({
-      variables: { page: this.page, city: this.city },
+      variables: { page: this.page, city: this.city, classification: this.classification },
       updateQuery: (previousResult, { fetchMoreResult }) => ({
         eventsPage: {
           __typename: previousResult.eventsPage.__typename,

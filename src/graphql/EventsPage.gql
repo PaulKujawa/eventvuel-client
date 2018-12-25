@@ -1,5 +1,5 @@
-query EventsPage($page: Int!, $city: String!) {
-    eventsPage(page: $page, city: $city) {
+query EventsPage($page: Int!, $city: String!, $classification: ID) {
+    eventsPage(page: $page, city: $city, classification: $classification) {
         events {
             name
             dates {
