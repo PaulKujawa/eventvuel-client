@@ -34,12 +34,6 @@ export default new Router({
       meta: { classificationId: 'KZFzniwnSyZfZ7v7na' },
     },
     {
-      path: '/miscellaneous-events',
-      name: 'event-list-miscellaneous',
-      component: EventList,
-      meta: { classificationId: 'KZFzniwnSyZfZ7v7n1' },
-    },
-    {
       path: '/events/:id',
       name: 'event',
       component: () => import(/* webpackChunkName: "event" */ '@/views/Event.vue'),

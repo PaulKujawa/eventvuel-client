@@ -55,7 +55,6 @@ export default class App extends Vue {
     { title: 'Concerts', route: { name: 'event-list-concerts' }, icon: 'music_note' },
     { title: 'Sports', route: { name: 'event-list-sports' }, icon: 'directions_bike' },
     { title: 'Arts & Theater', route: { name: 'event-list-arts' }, icon: 'brush' },
-    { title: 'Miscellaneous', route: { name: 'event-list-miscellaneous' }, icon: 'place' },
   ];
 }
 </script>
