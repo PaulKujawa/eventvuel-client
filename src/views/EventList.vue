@@ -6,7 +6,7 @@
 
     <template v-if="eventsPage && eventsPage.events.length">
       <v-layout row wrap>
-        <v-flex v-for="event of eventsPage.events" :key="event.id" xs12 sm6 md4 lg3>
+        <v-flex v-for="event of eventsPage.events" :key="event.id" xs12 sm4 md3 lg2>
           <EventCard :event="event"></EventCard>
         </v-flex>
       </v-layout>

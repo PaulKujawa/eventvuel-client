@@ -2,6 +2,7 @@ query EventsPage($page: Int!, $city: String!, $classification: ID) {
     eventsPage(page: $page, city: $city, classification: $classification) {
         events {
             name
+            url
             dates {
                 start {
                     localDate
