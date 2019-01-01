@@ -25,6 +25,7 @@ export interface EventsPage_eventsPage_events_images {
 export interface EventsPage_eventsPage_events {
   __typename: "Event";
   name: string;
+  url: string;
   dates: EventsPage_eventsPage_events_dates;
   images: EventsPage_eventsPage_events_images[];
 }
@@ -42,4 +43,5 @@ export interface EventsPage {
 export interface EventsPageVariables {
   page: number;
   city: string;
+  classification?: string | null;
 }

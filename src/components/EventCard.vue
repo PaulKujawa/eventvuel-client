@@ -1,5 +1,5 @@
 <template>
-  <v-card :hover="true">
+  <v-card :hover="true" :href="event.url" :target="'_blank'">
     <v-img :src="url"></v-img>
 
     <v-card-title primary-title>
@@ -9,10 +9,10 @@
       </div>
     </v-card-title>
 
-    <v-card-actions>
+    <!-- <v-card-actions>
       <v-btn flat color="green">Share</v-btn>
       <v-btn flat color="green">Explore</v-btn>
-    </v-card-actions>
+    </v-card-actions> -->
   </v-card>
 </template>
 

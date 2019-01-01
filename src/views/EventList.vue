@@ -1,21 +1,17 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs12>
-      <v-text-field v-model="city" label="City" required></v-text-field>
-    </v-flex>
+    <v-text-field v-model="city" prepend-icon="room" label="City" required></v-text-field>
 
     <v-progress-linear v-if="$apollo.queries.eventsPage.loading" :indeterminate="true"></v-progress-linear>
 
-    <template v-if="eventsPage">
-      <v-flex v-for="event of eventsPage.events" :key="event.id" xs12 sm6 md4 lg3>
-        <EventCard :event="event"></EventCard>
-      </v-flex>
+    <template v-if="eventsPage && eventsPage.events.length">
+      <v-layout row wrap>
+        <v-flex v-for="event of eventsPage.events" :key="event.id" xs12 sm4 md3 lg2>
+          <EventCard :event="event"></EventCard>
+        </v-flex>
+      </v-layout>
 
-      <v-flex xs12>
-        <v-btn v-if="eventsPage.hasMore" @click="showMore" color="secondary">
-          Show more
-        </v-btn>
-      </v-flex>
+      <v-btn v-if="eventsPage.hasMore" @click="showMore" color="secondary">Show more</v-btn>
     </template>
   </v-layout>
 </template>
