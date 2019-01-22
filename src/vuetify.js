@@ -1,3 +1,4 @@
+// TODO use a webpack loader instead https://vuetifyjs.com/en/framework/a-la-carte#vuetify-loader
 import Vue from 'vue'
 import {
   Vuetify,
@@ -15,6 +16,7 @@ import {
   VToolbar,
   transitions
 } from 'vuetify'
+
 import 'vuetify/src/stylus/app.styl'
 
 Vue.use(Vuetify, {

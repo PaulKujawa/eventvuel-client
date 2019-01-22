@@ -17,29 +17,35 @@
 </template>
 
 <script lang="ts">
-import EventCard from '@/components/EventCard.vue';
-import * as gqlEventsPage from '@/graphql/EventsPage.gql';
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import { Route } from 'vue-router';
+import EventCard from "@/components/EventCard.vue";
+import * as gqlEventsPage from "@/graphql/EventsPage.gql";
+import { Component, Vue, Watch } from "vue-property-decorator";
+import { Route } from "vue-router";
 
 @Component({
-  components: { EventCard },
   apollo: {
     eventsPage: {
+      debounce: 300,
       query: gqlEventsPage,
       variables() {
-        return { page: 0, city: this.city, classification: this.classification || undefined };
-      },
-      debounce: 300,
-    },
+        return {
+          city: this.city,
+          classification: this.classification || undefined,
+          page: 0
+        };
+      }
+    }
   },
+  components: {
+    EventCard
+  }
 })
 export default class EventList extends Vue {
-  public city = 'London';
+  public city = "London";
   private page = 0;
   private classification: string | null = null;
 
-  @Watch('$route', { immediate: true })
+  @Watch("$route", { immediate: true })
   public onRouteChanged(to: Route) {
     this.classification = to.meta.classificationId || null;
   }
@@ -48,14 +54,21 @@ export default class EventList extends Vue {
     this.page++;
 
     this.$apollo.queries.eventsPage.fetchMore({
-      variables: { page: this.page, city: this.city, classification: this.classification },
       updateQuery: (previousResult, { fetchMoreResult }) => ({
         eventsPage: {
           __typename: previousResult.eventsPage.__typename,
-          events: [...previousResult.eventsPage.events, ...fetchMoreResult.eventsPage.events],
-          hasMore: fetchMoreResult.eventsPage.hasMore,
-        },
+          events: [
+            ...previousResult.eventsPage.events,
+            ...fetchMoreResult.eventsPage.events
+          ],
+          hasMore: fetchMoreResult.eventsPage.hasMore
+        }
       }),
+      variables: {
+        city: this.city,
+        classification: this.classification,
+        page: this.page
+      }
     });
   }
 }
