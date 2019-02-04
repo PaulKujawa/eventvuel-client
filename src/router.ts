@@ -1,4 +1,5 @@
 import EventList from "@/views/EventList.vue";
+import Startpage from "@/views/Startpage.vue";
 import Vue from "vue";
 import Router from "vue-router";
 
@@ -6,6 +7,10 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
+    {
+      component: Startpage,
+      path: "/"
+    },
     {
       component: EventList,
       name: "event-list",
