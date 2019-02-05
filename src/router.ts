@@ -9,6 +9,7 @@ export default new Router({
   routes: [
     {
       component: Startpage,
+      name: "start-page",
       path: "/"
     },
     {
