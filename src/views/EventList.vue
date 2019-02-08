@@ -1,17 +1,21 @@
 <template>
-  <v-layout row wrap>
-    <v-text-field v-model="city" prepend-icon="room" label="City" required></v-text-field>
+  <v-layout wrap justify-center>
+    <h1 class="display-2 mb-3">Events for {{ city }}</h1>
 
     <v-progress-linear v-if="$apollo.queries.eventsPage.loading" :indeterminate="true"></v-progress-linear>
 
     <template v-if="eventsPage && eventsPage.events.length">
-      <v-layout row wrap>
-        <v-flex v-for="event of eventsPage.events" :key="event.id" xs12 sm4 md3 lg2>
-          <EventCard :event="event"></EventCard>
-        </v-flex>
-      </v-layout>
+      <div>
+        <v-layout wrap>
+          <v-flex v-for="event of eventsPage.events" :key="event.id" xs12 sm4 md3 lg2>
+            <EventCard :event="event"></EventCard>
+          </v-flex>
+        </v-layout>
+      </div>
 
-      <v-btn v-if="eventsPage.hasMore" @click="showMore" color="secondary">Show more</v-btn>
+      <div class="mt-3">
+        <v-btn v-if="eventsPage.hasMore" @click="showMore(eventsPage.events.length)">Gimme more</v-btn>
+      </div>
     </template>
   </v-layout>
 </template>
@@ -25,13 +29,13 @@ import { Route } from "vue-router";
 @Component({
   apollo: {
     eventsPage: {
-      debounce: 300,
+      // debounce: 300,
       query: gqlEventsPage,
       variables() {
         return {
-          city: this.city,
-          classification: this.classification || undefined,
-          page: 0
+          // city: this.city,
+          // classification: this.classification || undefined,
+          start: 0
         };
       }
     }
@@ -42,16 +46,17 @@ import { Route } from "vue-router";
 })
 export default class EventList extends Vue {
   public city = "London";
-  private page = 0;
+  private start = 0;
   private classification: string | null = null;
 
   @Watch("$route", { immediate: true })
   public onRouteChanged(to: Route) {
     this.classification = to.meta.classificationId || null;
+    window.console.log(this.classification);
   }
 
-  public showMore() {
-    this.page++;
+  public showMore(eventAmount: number) {
+    this.start += eventAmount;
 
     this.$apollo.queries.eventsPage.fetchMore({
       updateQuery: (previousResult, { fetchMoreResult }) => ({
@@ -65,9 +70,9 @@ export default class EventList extends Vue {
         }
       }),
       variables: {
-        city: this.city,
-        classification: this.classification,
-        page: this.page
+        // city: this.city,
+        // classification: this.classification,
+        start: this.start
       }
     });
   }

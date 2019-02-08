@@ -1,5 +1,5 @@
 // TODO use a webpack loader instead https://vuetifyjs.com/en/framework/a-la-carte#vuetify-loader
-import Vue from 'vue'
+import Vue from "vue";
 import {
   Vuetify,
   VApp,
@@ -15,9 +15,9 @@ import {
   VProgressLinear,
   VToolbar,
   transitions
-} from 'vuetify'
+} from "vuetify";
 
-import 'vuetify/src/stylus/app.styl'
+import "vuetify/src/stylus/app.styl";
 
 Vue.use(Vuetify, {
   components: {
@@ -34,5 +34,5 @@ Vue.use(Vuetify, {
     VProgressLinear,
     VToolbar,
     transitions
-  },
-})
+  }
+});

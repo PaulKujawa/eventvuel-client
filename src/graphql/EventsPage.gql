@@ -1,19 +1,16 @@
-query EventsPage($page: Int!, $city: String!, $classification: ID) {
-    eventsPage(page: $page, city: $city, classification: $classification) {
-        events {
-            name
-            url
-            dates {
-                start {
-                    localDate
-                    localTime
-                }
-            }
-            images {
-                url
-                width
-            }
+query EventsPage($start: Int!) {
+  # $city: String!, $classification: ID
+  eventsPage(start: $start) {
+    # city: $city, classification: $classification
+    events {
+      name
+      url
+      images {
+        standard {
+          url
         }
-        hasMore
+      }
     }
+    hasMore
+  }
 }

@@ -1,31 +1,31 @@
 <template>
   <v-card :hover="true" :href="event.url" :target="'_blank'">
-    <v-img :src="url"></v-img>
+    <v-img :src="imageUrl"></v-img>
 
-    <v-card-title primary-title>
+    <v-card-title>
       <div>
-        <h3 class="headline mb-0">{{ event.name }}</h3>
-        <p>{{ event.dates.start.localDate }}</p>
+        <h3 class="grey--text">{{ event.name }}</h3>
       </div>
     </v-card-title>
-
-    <!-- <v-card-actions>
-      <v-btn flat color="green">Share</v-btn>
-      <v-btn flat color="green">Explore</v-btn>
-    </v-card-actions> -->
   </v-card>
 </template>
 
 <script lang="ts">
-import { EventsPage_eventsPage_events } from '@/graphql/__generated__/Eventspage';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { EventsPage_eventsPage_events } from "@/graphql/__generated__/Eventspage";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class EventCard extends Vue {
   @Prop() public event!: EventsPage_eventsPage_events;
 
-  get url(): string {
-    return this.event.images.find((image) => image.width === 640)!.url;
+  get imageUrl(): string {
+    const { images } = this.event;
+
+    if (images) {
+      return (images as any).standard.url;
+    }
+
+    return "https://via.placeholder.com/150?text=coming+soon";
   }
 }
 </script>
