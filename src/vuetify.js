@@ -13,6 +13,7 @@ import {
   VTextField,
   VList,
   VProgressLinear,
+  VSelect,
   VToolbar,
   transitions
 } from "vuetify";
@@ -32,6 +33,7 @@ Vue.use(Vuetify, {
     VTextField,
     VList,
     VProgressLinear,
+    VSelect,
     VToolbar,
     transitions
   }

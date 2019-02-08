@@ -12,7 +12,7 @@
       </v-list>-->
     </v-navigation-drawer>
 
-    <v-toolbar app v-if="toolbarVisible">
+    <v-toolbar v-if="!startPage" app>
       <span class="hidden-sm-and-up">
         <v-toolbar-side-icon @click="drawerOpen = !drawerOpen"></v-toolbar-side-icon>
       </span>
@@ -32,7 +32,7 @@
     </v-toolbar>
 
     <v-content>
-      <v-container fluid grid-list-lg fill-height>
+      <v-container fluid grid-list-lg :fill-height="startPage">
         <router-view></router-view>
       </v-container>
     </v-content>
@@ -52,11 +52,11 @@ import { Route } from "vue-router";
 export default class App extends Vue {
   public appTitle = "Eventvuel";
   public drawerOpen = false;
-  public toolbarVisible = false;
+  public startPage = true;
 
   @Watch("$route", { immediate: true })
   public onRouteChanged(to: Route): void {
-    this.toolbarVisible = to.path !== "/";
+    this.startPage = to.name === "start-page";
   }
 }
 </script>

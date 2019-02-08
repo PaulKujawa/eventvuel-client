@@ -1,16 +1,14 @@
 <template>
-  <v-layout wrap align-center justify-center>
+  <v-layout column>
     <v-flex>
-      <p class="display-1 text-xs-center grey--text">what are you up for?</p>
-
-      <v-container>
-        <v-layout wrap justify-center>
-          <v-flex v-for="segment of segmentations" :key="segment.title" xs12 sm4 lg3>
-            <SegmentCard :segment="segment"></SegmentCard>
-          </v-flex>
-        </v-layout>
-      </v-container>
+      <p class="display-1 text-xs-center grey--text">what are you up to?</p>
     </v-flex>
+
+    <v-layout wrap justify-center>
+      <v-flex v-for="segment of segmentations" :key="segment.title" xs12 sm4 lg3>
+        <SegmentCard :segment="segment"></SegmentCard>
+      </v-flex>
+    </v-layout>
   </v-layout>
 </template>
 

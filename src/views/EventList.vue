@@ -1,27 +1,32 @@
 <template>
-  <v-layout wrap justify-center>
-    <h1 class="display-2 mb-3">Events for {{ city }}</h1>
+  <v-layout column>
+    <v-flex>
+      <h1 class="text-xs-center display-2">Events for {{ city }}</h1>
+    </v-flex>
 
-    <v-progress-linear v-if="$apollo.queries.eventsPage.loading" :indeterminate="true"></v-progress-linear>
+    <v-flex>
+      <FilterBar></FilterBar>
+    </v-flex>
 
-    <template v-if="eventsPage && eventsPage.events.length">
-      <div>
-        <v-layout wrap>
-          <v-flex v-for="event of eventsPage.events" :key="event.id" xs12 sm4 md3 lg2>
-            <EventCard :event="event"></EventCard>
-          </v-flex>
-        </v-layout>
-      </div>
+    <v-vlex>
+      <v-progress-linear v-if="$apollo.queries.eventsPage.loading" :indeterminate="true"></v-progress-linear>
+    </v-vlex>
 
-      <div class="mt-3">
-        <v-btn v-if="eventsPage.hasMore" @click="showMore(eventsPage.events.length)">Gimme more</v-btn>
-      </div>
-    </template>
+    <v-layout row wrap>
+      <v-flex v-for="event of eventsPage.events" :key="event.id" xs12 sm4 md3 lg2>
+        <EventCard :event="event"></EventCard>
+      </v-flex>
+    </v-layout>
+
+    <v-flex text-xs-center>
+      <v-btn v-if="eventsPage.hasMore" @click="showMore(eventsPage.events.length)">Gimme more</v-btn>
+    </v-flex>
   </v-layout>
 </template>
 
 <script lang="ts">
 import EventCard from "@/components/EventCard.vue";
+import FilterBar from "@/components/FilterBar.vue";
 import * as gqlEventsPage from "@/graphql/EventsPage.gql";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Route } from "vue-router";
@@ -41,7 +46,8 @@ import { Route } from "vue-router";
     }
   },
   components: {
-    EventCard
+    EventCard,
+    FilterBar
   }
 })
 export default class EventList extends Vue {
