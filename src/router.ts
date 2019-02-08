@@ -1,4 +1,5 @@
 import EventList from "@/views/EventList.vue";
+import Segmentation from "@/views/Segmentation.vue";
 import Startpage from "@/views/Startpage.vue";
 import Vue from "vue";
 import Router from "vue-router";
@@ -13,8 +14,8 @@ export default new Router({
       path: "/"
     },
     {
-      component: EventList,
-      name: "event-list",
+      component: Segmentation,
+      name: "segmentation",
       path: "/events"
     },
     {
