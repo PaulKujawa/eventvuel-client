@@ -61,7 +61,7 @@ import { Route } from "vue-router";
 export default class EventList extends Vue {
   public filter: EventListFilter = { sorting: "eventdate" };
 
-  public city = store.selector.getCity();
+  public city = { ...store.selector.getCity()! }; // TODO add routing guard for empty city
   public category: Category = { id: "", name: "" };
   // public subCategoryIds = [];
   private start = 0;
