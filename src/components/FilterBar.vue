@@ -1,36 +1,48 @@
 <template>
   <v-layout wrap>
     <v-flex xs12 sm4>
-      <v-select disabled :items="genres" multiple prepend-icon="filter_list" label="All genres"></v-select>
+      <v-select :items="genres" disabled label="All genres" multiple prepend-icon="filter_list"></v-select>
     </v-flex>
 
     <v-flex xs12 sm4>
-      <!-- vuetify positioning of icon calender_today is erroneous -->
-      <v-select disabled :items="[]" prepend-icon="date_range" label="Select a date"></v-select>
+      <v-select :items="[]" disabled label="Select a date" prepend-icon="date_range"></v-select>
     </v-flex>
 
     <v-flex x12 sm4>
       <v-select
-        :items="sortings"
         item-text="title"
         item-value="id"
-        v-model="appliedSorting"
-        prepend-icon="sort"
+        :items="sortOptions"
+        @input="changed('sorting', $event)"
         label="Sort"
+        prepend-icon="sort"
+        :value="value.sorting"
       ></v-select>
     </v-flex>
   </v-layout>
 </template>
 
 <script lang="ts">
-import { eventSort } from "@/tm-config";
-import { Component, Vue } from "vue-property-decorator";
+export type EventListFilter = {
+  sorting: "eventdate" | "onsaledate" | "popularity"; // TODO infer type from tm-config/eventListSortings
+};
+
+import { eventListSortings } from "@/tm-config";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class FilterBar extends Vue {
-  public city = "London";
+  @Prop() public readonly value!: EventListFilter;
   public genres = ["a", "b", "c"];
-  public sortings = eventSort;
-  public appliedSorting = eventSort[0];
+  public sortOptions = eventListSortings;
+
+  public mounted(): void {
+    // providing initial setting
+    // this.value = {};
+  }
+
+  public changed(key: keyof EventListFilter, value: string): void {
+    this.$emit("input", { ...this.value, [key]: value });
+  }
 }
 </script>

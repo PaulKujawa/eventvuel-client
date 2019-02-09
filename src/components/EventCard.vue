@@ -11,12 +11,12 @@
 </template>
 
 <script lang="ts">
-import { EventsPage_eventsPage_events } from "@/graphql/__generated__/Eventspage";
+// import { EventsPage_eventsPage_events } from "@/graphql/__generated__/Eventspage";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class EventCard extends Vue {
-  @Prop() public event!: EventsPage_eventsPage_events;
+  @Prop() public readonly event!: any;
 
   get imageUrl(): string {
     const { images } = this.event;

@@ -1,45 +1,53 @@
 <template>
   <v-layout column>
     <v-flex>
-      <h1 class="text-xs-center display-2">Events for {{ city }}</h1>
+      <h1 class="text-xs-center display-2">{{ category.name }} in {{ city.name }}</h1>
     </v-flex>
 
     <v-flex>
-      <FilterBar></FilterBar>
+      <FilterBar v-model="filter"></FilterBar>
     </v-flex>
 
-    <v-vlex>
-      <v-progress-linear v-if="$apollo.queries.eventsPage.loading" :indeterminate="true"></v-progress-linear>
-    </v-vlex>
+    <v-flex>
+      <v-progress-linear v-if="$apollo.queries.eventList.loading" :indeterminate="true"></v-progress-linear>
+    </v-flex>
 
-    <v-layout row wrap>
-      <v-flex v-for="event of eventsPage.events" :key="event.id" xs12 sm4 md3 lg2>
-        <EventCard :event="event"></EventCard>
+    <template v-if="eventList && eventList.events.length">
+      <v-layout row wrap>
+        <v-flex v-for="event of eventList.events" :key="event.id" xs12 sm4 md3 lg2>
+          <EventCard :event="event"></EventCard>
+        </v-flex>
+      </v-layout>
+
+      <v-flex text-xs-center>
+        <v-btn v-if="eventList.hasMore" @click="showMore(eventList.events.length)">Gimme more</v-btn>
       </v-flex>
-    </v-layout>
-
-    <v-flex text-xs-center>
-      <v-btn v-if="eventsPage.hasMore" @click="showMore(eventsPage.events.length)">Gimme more</v-btn>
-    </v-flex>
+    </template>
   </v-layout>
 </template>
 
 <script lang="ts">
 import EventCard from "@/components/EventCard.vue";
-import FilterBar from "@/components/FilterBar.vue";
-import * as gqlEventsPage from "@/graphql/EventsPage.gql";
+import FilterBar, { EventListFilter } from "@/components/FilterBar.vue";
+import * as gqlEventList from "@/graphql/EventList.gql";
+import { store } from "@/store";
+import { Category, categoryConfig } from "@/tm-config";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Route } from "vue-router";
 
 @Component({
   apollo: {
-    eventsPage: {
+    eventList: {
       // debounce: 300,
-      query: gqlEventsPage,
+      query: gqlEventList,
       variables() {
         return {
-          // city: this.city,
-          // classification: this.classification || undefined,
+          cityId: this.city.id,
+          sort: this.filter.sorting,
+
+          // subCategoryIds: this.subCategoryIds.length
+          //   ? this.subCategoryIds
+          //   : [this.catgory.id],
           start: 0
         };
       }
@@ -51,33 +59,36 @@ import { Route } from "vue-router";
   }
 })
 export default class EventList extends Vue {
-  public city = "London";
+  public filter: EventListFilter = { sorting: "eventdate" };
+
+  public city = store.selector.getCity();
+  public category: Category = { id: "", name: "" };
+  // public subCategoryIds = [];
   private start = 0;
-  private classification: string | null = null;
 
   @Watch("$route", { immediate: true })
   public onRouteChanged(to: Route) {
-    this.classification = to.meta.classificationId || null;
-    window.console.log(this.classification);
+    this.category = categoryConfig[to.name!];
   }
 
   public showMore(eventAmount: number) {
     this.start += eventAmount;
 
-    this.$apollo.queries.eventsPage.fetchMore({
+    this.$apollo.queries.eventList.fetchMore({
       updateQuery: (previousResult, { fetchMoreResult }) => ({
-        eventsPage: {
-          __typename: previousResult.eventsPage.__typename,
+        eventList: {
+          __typename: previousResult.eventList.__typename,
           events: [
-            ...previousResult.eventsPage.events,
-            ...fetchMoreResult.eventsPage.events
+            ...previousResult.eventList.events,
+            ...fetchMoreResult.eventList.events
           ],
-          hasMore: fetchMoreResult.eventsPage.hasMore
+          hasMore: fetchMoreResult.eventList.hasMore
         }
       }),
       variables: {
-        // city: this.city,
+        cityId: this.city.id,
         // classification: this.classification,
+        sort: this.filter.sorting,
         start: this.start
       }
     });

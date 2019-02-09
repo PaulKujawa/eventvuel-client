@@ -18,7 +18,7 @@ export const categoryConfig: { [routeName: string]: Category } = {
   }
 };
 
-export const eventSort = [
+export const eventListSortings = [
   { id: "eventdate", title: "Event Date" },
   { id: "onsaledate", title: "On-Sale Date" },
   { id: "popularity", title: "Popularity" }

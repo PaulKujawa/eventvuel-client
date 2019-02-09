@@ -13,7 +13,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class CategoryCard extends Vue {
-  @Prop() public category!: { title: string; route: { name: string } };
+  @Prop() public readonly category!: { title: string; route: { name: string } };
 
   get imageUrl(): string {
     return "https://via.placeholder.com/150";
