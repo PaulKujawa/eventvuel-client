@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer app v-model="drawerOpen">
       <!-- <v-list>
-        <v-list-tile :to="{name: 'start-page'}">
+        <v-list-tile :to="{name: 'startPage'}">
           <v-list-tile-action>
             <v-icon>{{ 'room' }}</v-icon>
           </v-list-tile-action>
@@ -24,7 +24,7 @@
       <!-- <v-spacer></v-spacer>
 
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat :to="{name: 'start-page'}">
+        <v-btn flat :to="{name: 'startPage'}">
           <v-icon left>room</v-icon>
           {{ city }}
         </v-btn>
@@ -56,7 +56,7 @@ export default class App extends Vue {
 
   @Watch("$route", { immediate: true })
   public onRouteChanged(to: Route): void {
-    this.startPage = to.name === "start-page";
+    this.startPage = to.name === "startPage";
   }
 }
 </script>

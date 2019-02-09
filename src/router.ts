@@ -1,5 +1,5 @@
+import CategoryList from "@/views/CategoryList.vue";
 import EventList from "@/views/EventList.vue";
-import Segmentation from "@/views/Segmentation.vue";
 import Startpage from "@/views/Startpage.vue";
 import Vue from "vue";
 import Router from "vue-router";
@@ -10,30 +10,27 @@ export default new Router({
   routes: [
     {
       component: Startpage,
-      name: "start-page",
+      name: "startPage",
       path: "/"
     },
     {
-      component: Segmentation,
-      name: "segmentation",
-      path: "/events"
+      component: CategoryList,
+      name: "categoryList",
+      path: "/categories"
     },
     {
       component: EventList,
-      meta: { classificationId: "KZFzniwnSyZfZ7v7nJ" },
-      name: "event-list-concerts",
+      name: "eventListConcerts",
       path: "/concert-events"
     },
     {
       component: EventList,
-      meta: { classificationId: "KZFzniwnSyZfZ7v7nE" },
-      name: "event-list-sports",
+      name: "eventListSports",
       path: "/sport-events"
     },
     {
       component: EventList,
-      meta: { classificationId: "KZFzniwnSyZfZ7v7na" },
-      name: "event-list-arts",
+      name: "eventListArts",
       path: "/art-events"
     },
     {

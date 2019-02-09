@@ -14,18 +14,18 @@
 </template>
 
 <script lang="ts">
-import { City, store } from "@/store";
+import { store } from "@/store";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class Event extends Vue {
-  public city: City = store.selector.getCity();
+  public city = store.selector.getCity();
 
   public submit(): void {
     // see https://github.com/vuejs/vue/issues/7349#issuecomment-458345808
     if (this.city) {
       store.reducer.setCity(this.city);
-      this.$router.push("/events");
+      this.$router.push({ name: "categoryList" });
     }
   }
 }

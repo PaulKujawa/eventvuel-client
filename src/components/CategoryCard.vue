@@ -1,9 +1,9 @@
 <template>
-  <v-card :hover="true" :to="segment.route">
+  <v-card :hover="true" :to="category.route">
     <v-img :src="imageUrl"></v-img>
 
     <v-card-title>
-      <h3 class="headline text-xs-center">{{ segment.title }}</h3>
+      <h3 class="headline text-xs-center">{{ category.title }}</h3>
     </v-card-title>
   </v-card>
 </template>
@@ -12,8 +12,8 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
-export default class SegmentCard extends Vue {
-  @Prop() public segment!: { title: string; route: { name: string } };
+export default class CategoryCard extends Vue {
+  @Prop() public category!: { title: string; route: { name: string } };
 
   get imageUrl(): string {
     return "https://via.placeholder.com/150";
