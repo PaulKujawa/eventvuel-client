@@ -14,7 +14,6 @@
 
 <script lang="ts">
 import CategoryCard from "@/components/CategoryCard.vue";
-import { store } from "@/store";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({
@@ -23,7 +22,6 @@ import { Component, Vue } from "vue-property-decorator";
   }
 })
 export default class CategoryList extends Vue {
-  public city = store.selector.getCity();
   public categories = [
     { title: "Concerts", route: { name: "eventListConcerts" } },
     { title: "Sports", route: { name: "eventListSports" } },

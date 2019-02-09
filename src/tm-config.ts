@@ -23,3 +23,19 @@ export const eventListSortings = [
   { id: "onsaledate", title: "On-Sale Date" },
   { id: "popularity", title: "Popularity" }
 ];
+
+export type City = { id: number; name: string; country_id: number };
+
+// TODO only tentative
+export const cities: City[] = [
+  {
+    country_id: 276,
+    id: 60000,
+    name: "Berlin"
+  },
+  {
+    country_id: 276,
+    id: 60075,
+    name: "Hamburg"
+  }
+];
