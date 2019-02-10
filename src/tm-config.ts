@@ -1,19 +1,19 @@
 export type Category = {
-  id: string;
+  id: number;
   name: string;
 };
 
 export const categoryConfig: { [routeName: string]: Category } = {
   eventListArts: {
-    id: "KZFzniwnSyZfZ7v7na",
+    id: 10002,
     name: "Art events"
   },
   eventListConcerts: {
-    id: "KZFzniwnSyZfZ7v7nE",
+    id: 10001,
     name: "Concerts"
   },
   eventListSports: {
-    id: "KZFzniwnSyZfZ7v7nJ",
+    id: 10004,
     name: "Sport events"
   }
 };

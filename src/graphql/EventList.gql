@@ -1,6 +1,16 @@
-query EventList($start: Int, $cityId: ID!, $sort: String) {
+query EventList(
+  $categoryIds: [ID!]!
+  $cityId: ID!
+  $sort: String
+  $start: Int
+) {
   # $classification: ID
-  eventList(start: $start, cityIds: [$cityId], sort: $sort) {
+  eventList(
+    categoryIds: $categoryIds
+    cityIds: [$cityId]
+    sort: $sort
+    start: $start
+  ) {
     # classification: $classification
     events {
       name
