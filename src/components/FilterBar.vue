@@ -45,6 +45,12 @@ import { Component, Prop, Vue } from "vue-property-decorator";
   apollo: {
     subCategories: {
       query: gqlSubcategories,
+      update(data) {
+        return data.subCategories.sort(
+          (a: { name: string }, b: { name: string }) =>
+            a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+        );
+      },
       variables() {
         return { categoryId: this.categoryId };
       }
