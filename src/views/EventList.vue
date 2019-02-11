@@ -1,7 +1,7 @@
 <template>
   <v-layout column>
     <v-flex>
-      <h1 class="text-xs-center display-2">{{ category.name }} in {{ city.name }}</h1>
+      <h1 class="display-2 grey--text text-xs-center">{{ category.name }} in {{ city.name }}</h1>
     </v-flex>
 
     <v-flex>
@@ -9,7 +9,7 @@
     </v-flex>
 
     <v-flex>
-      <v-progress-linear v-if="$apollo.queries.eventList.loading" :indeterminate="true"></v-progress-linear>
+      <v-progress-linear color="secondary" indeterminate v-if="$apollo.queries.eventList.loading"></v-progress-linear>
     </v-flex>
 
     <template v-if="eventList && eventList.events.length">
@@ -20,7 +20,11 @@
       </v-layout>
 
       <v-flex text-xs-center>
-        <v-btn v-if="eventList.hasMore" @click="showMore(eventList.events.length)">Gimme more</v-btn>
+        <v-btn
+          @click="showMore(eventList.events.length)"
+          color="secondary"
+          v-if="eventList.hasMore"
+        >Gimme more</v-btn>
       </v-flex>
     </template>
   </v-layout>
@@ -66,7 +70,6 @@ export default class EventList extends Vue {
 
   public created() {
     this.category = categoryConfig[this.$route.name!];
-    // TODO add routing guard for empty city
     // TODO object spread causes TS error
     // tslint:disable-next-line:prefer-object-spread
     this.city = Object.assign({}, store.selector.getCity());

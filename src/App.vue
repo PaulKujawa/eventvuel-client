@@ -12,13 +12,13 @@
       </v-list>-->
     </v-navigation-drawer>
 
-    <v-toolbar v-if="!startPage" app>
+    <v-toolbar app color="primary" v-if="!startPage">
       <span class="hidden-sm-and-up">
         <v-toolbar-side-icon @click="drawerOpen = !drawerOpen"></v-toolbar-side-icon>
       </span>
 
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer">{{ appTitle }}</router-link>
+        <router-link class="white--text" style="cursor: pointer" tag="span" to="/">{{ appTitle }}</router-link>
       </v-toolbar-title>
 
       <!-- <v-spacer></v-spacer>
@@ -50,7 +50,7 @@ import { Route } from "vue-router";
 
 @Component({})
 export default class App extends Vue {
-  public appTitle = "Eventvuel";
+  public readonly appTitle = "Eventvuel";
   public drawerOpen = false;
   public startPage = true;
 

@@ -1,5 +1,5 @@
 <template>
-  <v-card :hover="true" :to="category.route">
+  <v-card color="accent" hover :to="category.route">
     <v-img :src="imageUrl"></v-img>
 
     <v-card-title>

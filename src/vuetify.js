@@ -20,6 +20,8 @@ import {
 
 import "vuetify/src/stylus/app.styl";
 
+import colors from "vuetify/es5/util/colors";
+
 Vue.use(Vuetify, {
   components: {
     VApp,
@@ -36,5 +38,16 @@ Vue.use(Vuetify, {
     VSelect,
     VToolbar,
     transitions
+  },
+  theme: {
+    // prettier-ignore
+    primary: colors.blueGrey.base, // "#607d8b"
+    secondary: colors.amber.base, // "#ffc107"
+    accent: colors.brown.lighten4, // brown.base = "#795548"
+    // prettier-ignore
+    error: colors.deepOrange.base, // "#ff5722"
+    warning: colors.orange.base, // "#ff9800"
+    info: colors.cyan.base, // "#00bcd4"
+    success: colors.teal.base // "#009688"
   }
 });
