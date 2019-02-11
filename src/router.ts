@@ -1,3 +1,4 @@
+import { store } from "@/store";
 import CategoryList from "@/views/CategoryList.vue";
 import EventList from "@/views/EventList.vue";
 import Startpage from "@/views/Startpage.vue";
@@ -6,7 +7,7 @@ import Router from "vue-router";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       component: Startpage,
@@ -41,3 +42,13 @@ export default new Router({
     }
   ]
 });
+
+router.beforeEach((to, _from, next) => {
+  if (store.selector.getCity() === null && to.name !== "startPage") {
+    next({ name: "startPage" });
+  } else {
+    next();
+  }
+});
+
+export default router;
