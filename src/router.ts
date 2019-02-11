@@ -1,42 +1,54 @@
-import EventList from '@/views/EventList.vue';
-import Vue from 'vue';
-import Router from 'vue-router';
+import { store } from "@/store";
+import CategoryList from "@/views/CategoryList.vue";
+import EventList from "@/views/EventList.vue";
+import Startpage from "@/views/Startpage.vue";
+import Vue from "vue";
+import Router from "vue-router";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
-      path: '/',
-      redirect: '/events',
+      component: Startpage,
+      name: "startPage",
+      path: "/"
     },
     {
-      path: '/events',
-      name: 'event-list',
+      component: CategoryList,
+      name: "categoryList",
+      path: "/categories"
+    },
+    {
       component: EventList,
+      name: "eventListConcerts",
+      path: "/concert-events"
     },
     {
-      path: '/concert-events',
-      name: 'event-list-concerts',
       component: EventList,
-      meta: { classificationId: 'KZFzniwnSyZfZ7v7nJ' },
+      name: "eventListSports",
+      path: "/sport-events"
     },
     {
-      path: '/sport-events',
-      name: 'event-list-sports',
       component: EventList,
-      meta: { classificationId: 'KZFzniwnSyZfZ7v7nE' },
+      name: "eventListArts",
+      path: "/art-events"
     },
     {
-      path: '/art-events',
-      name: 'event-list-arts',
-      component: EventList,
-      meta: { classificationId: 'KZFzniwnSyZfZ7v7na' },
-    },
-    {
-      path: '/events/:id',
-      name: 'event',
-      component: () => import(/* webpackChunkName: "event" */ '@/views/Event.vue'),
-    },
-  ],
+      component: () =>
+        import(/* webpackChunkName: "event" */ "@/views/Event.vue"),
+      name: "event",
+      path: "/events/:id"
+    }
+  ]
 });
+
+router.beforeEach((to, _from, next) => {
+  if (store.selector.getCity() === null && to.name !== "startPage") {
+    next({ name: "startPage" });
+  } else {
+    next();
+  }
+});
+
+export default router;

@@ -1,0 +1,26 @@
+query EventList(
+  $categoryIds: [ID!]!
+  $cityId: ID!
+  $sort: String
+  $start: Int
+) {
+  # $classification: ID
+  eventList(
+    categoryIds: $categoryIds
+    cityIds: [$cityId]
+    sort: $sort
+    start: $start
+  ) {
+    # classification: $classification
+    events {
+      name
+      url
+      images {
+        standard {
+          url
+        }
+      }
+    }
+    hasMore
+  }
+}
