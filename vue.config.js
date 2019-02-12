@@ -1,6 +1,9 @@
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+
 module.exports = {
   configureWebpack: {
-    devtool: "source-map"
+    devtool: "source-map",
+    plugins: [new CopyWebpackPlugin(["public/_redirects"])]
   },
   chainWebpack: config => {
     config.module.rule("scss").oneOfs.store.forEach(item => {
