@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ec00f4bb-decc-4242-a79a-9cc4c51054b9/deploy-status)](https://app.netlify.com/sites/eventvuel/deploys)
+
 # GraphQL client for Ticketmaster
 
 ## Contribute
@@ -11,20 +13,8 @@ apollo client:codegen \
 ```
 
 ## tech stack
-|name               |purpose|
-|---                |---|
-|Now                |Deployment|
-|Vue                |JS framework|
-|Typescript & Babel |JS static typing|
-|TsLint             |JS Linting|
-|Apollo Client      |GraphQL client|
-|Webpack            |Bundler|
-|Vuetify            |UI framework|
-|SASS               |CSS preprocessor|
-|PostCSS            |CSS auto-prefixer|
+Vue, Vuetify & SASS, Apollo (GraphQl), TS, Webpack, Prettier & TSLint, Netlify
 
 ## Browser support
-- Edge 17
-- Firefox 62
-- Chrome 68
-- Safarie 11
+Chrome 68, Edge 17, Firefox 62, Safarie 11
+
