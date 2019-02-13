@@ -1,5 +1,6 @@
 import { store } from "@/store";
 import CategoryList from "@/views/CategoryList.vue";
+import Event from "@/views/Event.vue";
 import EventList from "@/views/EventList.vue";
 import Startpage from "@/views/Startpage.vue";
 import Vue from "vue";
@@ -8,6 +9,7 @@ import Router from "vue-router";
 Vue.use(Router);
 
 const router = new Router({
+  mode: "history",
   routes: [
     {
       component: Startpage,
@@ -39,6 +41,10 @@ const router = new Router({
         import(/* webpackChunkName: "event" */ "@/views/Event.vue"),
       name: "event",
       path: "/events/:id"
+    },
+    {
+      component: Event,
+      path: "*"
     }
   ]
 });
