@@ -1,12 +1,20 @@
 import { store } from "@/store";
 import CategoryList from "@/views/CategoryList.vue";
-import Event from "@/views/Event.vue";
 import EventList from "@/views/EventList.vue";
+import NotFound from "@/views/NotFound.vue";
 import Startpage from "@/views/Startpage.vue";
 import Vue from "vue";
-import Router from "vue-router";
+import Router, { NavigationGuard, RawLocation, Route } from "vue-router";
 
 Vue.use(Router);
+
+const cityNavigationGuard: NavigationGuard = (
+  _to: Route,
+  _from: Route,
+  next: (to?: RawLocation) => void
+) => {
+  store.selector.getCity() === null ? next({ name: "startPage" }) : next();
+};
 
 const router = new Router({
   mode: "history",
@@ -17,21 +25,25 @@ const router = new Router({
       path: "/"
     },
     {
+      beforeEnter: cityNavigationGuard,
       component: CategoryList,
       name: "categoryList",
       path: "/categories"
     },
     {
+      beforeEnter: cityNavigationGuard,
       component: EventList,
       name: "eventListConcerts",
       path: "/concert-events"
     },
     {
+      beforeEnter: cityNavigationGuard,
       component: EventList,
       name: "eventListSports",
       path: "/sport-events"
     },
     {
+      beforeEnter: cityNavigationGuard,
       component: EventList,
       name: "eventListArts",
       path: "/art-events"
@@ -43,18 +55,11 @@ const router = new Router({
       path: "/events/:id"
     },
     {
-      component: Event,
+      component: NotFound,
+      name: "notFound",
       path: "*"
     }
   ]
-});
-
-router.beforeEach((to, _from, next) => {
-  if (store.selector.getCity() === null && to.name !== "startPage") {
-    next({ name: "startPage" });
-  } else {
-    next();
-  }
 });
 
 export default router;
