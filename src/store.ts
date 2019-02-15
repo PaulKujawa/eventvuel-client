@@ -1,3 +1,5 @@
+import { localStorageService } from "@/services/local-storage-service";
+
 export type City = {
   readonly country_id: number;
   readonly id: number;
@@ -8,6 +10,7 @@ export type City = {
 const reducer = {
   setCity(city: City) {
     state.city = { ...city };
+    localStorageService.setItem("city", city);
   }
 };
 
@@ -18,7 +21,7 @@ const selector = {
 };
 
 const state: { city: City | null } = {
-  city: null
+  city: localStorageService.getItem<City>("city") || null
 };
 
 export const store = {
