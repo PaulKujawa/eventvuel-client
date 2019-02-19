@@ -1,6 +1,6 @@
 <template>
-  <v-card color="accent" hover :to="category.route">
-    <v-img :src="imageUrl"></v-img>
+  <v-card color="accent" hover :to="{ name: category.routeName }">
+    <v-img max-height="500px" :src="category.imageUrl"></v-img>
 
     <v-card-title>
       <h3 class="headline text-xs-center">{{ category.title }}</h3>
@@ -9,16 +9,11 @@
 </template>
 
 <script lang="ts">
+import { Category } from "@/tm-config";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class CategoryCard extends Vue {
-  @Prop() public readonly category!: { title: string; route: { name: string } };
-
-  get imageUrl(): string {
-    return "https://via.placeholder.com/150";
-
-    // return this.event.images.find(image => image.width === 640)!.url;
-  }
+  @Prop() public readonly category!: Category;
 }
 </script>

@@ -2,6 +2,7 @@
   <v-layout wrap>
     <v-flex xs12 sm4>
       <v-select
+        clearable
         :disabled="!subCategories || !subCategories.length"
         @input="changed('categoryIds', $event)"
         :items="subCategories"
