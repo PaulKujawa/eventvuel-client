@@ -1,7 +1,7 @@
 <template>
   <v-layout column>
     <v-flex>
-      <h1 class="display-2 grey--text text-xs-center">{{ category.name }} in {{ city.name }}</h1>
+      <h1 class="display-2 grey--text text-xs-center">{{ category.title }} in {{ city.name }}</h1>
     </v-flex>
 
     <v-flex>
@@ -35,7 +35,7 @@ import EventCard from "@/components/EventCard.vue";
 import FilterBar, { EventListFilter } from "@/components/FilterBar.vue";
 import * as gqlEventList from "@/graphql/EventList.gql";
 import { store } from "@/store";
-import { Category, categoryConfig, City } from "@/tm-config";
+import { categories, Category, City } from "@/tm-config";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({
@@ -69,7 +69,7 @@ export default class EventList extends Vue {
   private start = 0;
 
   public created() {
-    this.category = categoryConfig[this.$route.name!];
+    this.category = categories.find(cat => cat.routeName === this.$route.name)!;
     // TODO object spread causes TS error
     // tslint:disable-next-line:prefer-object-spread
     this.city = Object.assign({}, store.selector.getCity());

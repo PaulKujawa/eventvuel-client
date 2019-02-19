@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import CategoryCard from "@/components/CategoryCard.vue";
+import { categories as TmCategories } from "@/tm-config";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({
@@ -22,10 +23,6 @@ import { Component, Vue } from "vue-property-decorator";
   }
 })
 export default class CategoryList extends Vue {
-  public categories = [
-    { title: "Concerts", route: { name: "eventListConcerts" } },
-    { title: "Sports", route: { name: "eventListSports" } },
-    { title: "Arts & Theater", route: { name: "eventListArts" } }
-  ];
+  public readonly categories = TmCategories;
 }
 </script>

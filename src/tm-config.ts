@@ -1,22 +1,31 @@
 export type Category = {
   id: number;
-  name: string;
+  imageUrl: string;
+  routeName: string;
+  title: string;
 };
 
-export const categoryConfig: { [routeName: string]: Category } = {
-  eventListArts: {
+// free images from pexels.com
+export const categories: Category[] = [
+  {
     id: 10002,
-    name: "Art events"
+    imageUrl: "/images/arts.jpeg",
+    routeName: "eventListArts",
+    title: "Art events"
   },
-  eventListConcerts: {
+  {
     id: 10001,
-    name: "Concerts"
+    imageUrl: "/images/concerts.jpeg",
+    routeName: "eventListConcerts",
+    title: "Concerts"
   },
-  eventListSports: {
+  {
     id: 10004,
-    name: "Sport events"
+    imageUrl: "/images/sports.jpeg",
+    routeName: "eventListSports",
+    title: "Sport events"
   }
-};
+];
 
 export const eventListSortings = [
   { id: "eventdate", title: "Event Date" },
