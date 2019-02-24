@@ -5,7 +5,7 @@
     </v-flex>
 
     <v-flex>
-      <FilterBar :categoryId="category.id" v-model="filter"></FilterBar>
+      <FilterBar :categoryId="category.id" @filterChange="filter = $event"></FilterBar>
     </v-flex>
 
     <v-flex>
@@ -43,8 +43,7 @@ import { Component, Vue } from "vue-property-decorator";
     eventList: {
       query: gqlEventList,
       skip() {
-        // wait for lifecycle-hook created()
-        return !this.graphQlVariablesReady;
+        return this.filter === null;
       },
       variables() {
         return {
@@ -62,24 +61,15 @@ import { Component, Vue } from "vue-property-decorator";
   }
 })
 export default class EventList extends Vue {
-  public filter: EventListFilter = null as any;
+  public filter: EventListFilter | null = null;
   public category: Category = null as any;
   public city: City = null as any;
-  public graphQlVariablesReady = false;
   private start = 0;
 
-  public created() {
+  public created(): void {
     this.category = categories.find(cat => cat.routeName === this.$route.name)!;
-    // TODO object spread causes TS error
     // tslint:disable-next-line:prefer-object-spread
     this.city = Object.assign({}, store.selector.getCity());
-
-    this.filter = {
-      categoryIds: [this.category.id],
-      sorting: "eventdate"
-    };
-
-    this.graphQlVariablesReady = true;
   }
 
   public showMore(eventAmount: number) {
@@ -97,18 +87,12 @@ export default class EventList extends Vue {
         }
       }),
       variables: {
-        categoryIds: this.filter.categoryIds,
+        categoryIds: this.filter!.categoryIds,
         cityId: this.city.id,
-        sort: this.filter.sorting,
+        sort: this.filter!.sorting,
         start: this.start
       }
     });
   }
 }
 </script>
-
-<style lang="scss">
-.placeholder {
-  background-color: $foo;
-}
-</style>

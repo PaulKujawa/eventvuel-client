@@ -26,7 +26,7 @@
         :items="sortOptions"
         label="Sort"
         prepend-icon="sort"
-        :value="value.sorting"
+        :value="settings.sorting"
       ></v-select>
     </v-flex>
   </v-layout>
@@ -59,12 +59,25 @@ import { Component, Prop, Vue } from "vue-property-decorator";
   }
 })
 export default class FilterBar extends Vue {
-  @Prop() public readonly value!: EventListFilter;
   @Prop() public readonly categoryId!: number;
+  public settings!: EventListFilter;
   public sortOptions = eventListSortings;
 
-  public changed(key: keyof EventListFilter, value: string): void {
-    this.$emit("input", { ...this.value, [key]: value });
+  public created(): void {
+    this.settings = {
+      categoryIds: [this.categoryId],
+      sorting: "eventdate"
+    };
+    this.emit();
+  }
+
+  public changed(key: keyof EventListFilter, value: any): void {
+    this.settings[key] = value;
+    this.emit();
+  }
+
+  private emit(): void {
+    this.$emit("filterChange", this.settings);
   }
 }
 </script>
