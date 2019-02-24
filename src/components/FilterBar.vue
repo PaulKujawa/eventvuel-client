@@ -11,6 +11,7 @@
         label="All genres"
         multiple
         prepend-icon="filter_list"
+        :value="settings.categoryIds"
       ></v-select>
     </v-flex>
 
@@ -20,13 +21,13 @@
 
     <v-flex x12 sm4>
       <v-select
-        @input="changed('sorting', $event)"
+        @input="changed('sort', $event)"
         item-text="title"
         item-value="id"
         :items="sortOptions"
         label="Sort"
         prepend-icon="sort"
-        :value="settings.sorting"
+        :value="settings.sort"
       ></v-select>
     </v-flex>
   </v-layout>
@@ -34,13 +35,14 @@
 
 <script lang="ts">
 export type EventListFilter = {
-  sorting: "eventdate" | "onsaledate" | "popularity"; // TODO infer type from tm-config/eventListSortings
+  sort: "eventdate" | "onsaledate" | "popularity"; // TODO infer type from tm-config/eventListSortings
   categoryIds: number[];
 };
 
 import * as gqlSubcategories from "@/graphql/SubCategories.gql";
 import { eventListSortings } from "@/tm-config";
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Route } from "vue-router";
 
 @Component({
   apollo: {
@@ -60,24 +62,24 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 })
 export default class FilterBar extends Vue {
   @Prop() public readonly categoryId!: number;
-  public settings!: EventListFilter;
+  public settings: EventListFilter = null as any;
   public sortOptions = eventListSortings;
 
-  public created(): void {
+  @Watch("$route", { immediate: true })
+  public onRouteChanged({ query }: Route) {
     this.settings = {
-      categoryIds: [this.categoryId],
-      sorting: "eventdate"
+      categoryIds: (query.categoryIds as any) || [this.categoryId],
+      sort: (query.sort as any) || "eventdate"
     };
-    this.emit();
+
+    this.$emit("filterChange", this.settings);
   }
 
   public changed(key: keyof EventListFilter, value: any): void {
-    this.settings[key] = value;
-    this.emit();
-  }
-
-  private emit(): void {
-    this.$emit("filterChange", this.settings);
+    this.$router.push({
+      name: this.$route.name,
+      query: { ...this.$route.query, [key]: value }
+    });
   }
 }
 </script>

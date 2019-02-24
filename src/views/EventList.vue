@@ -49,7 +49,7 @@ import { Component, Vue } from "vue-property-decorator";
         return {
           categoryIds: this.filter.categoryIds,
           cityId: this.city.id,
-          sort: this.filter.sorting,
+          sort: this.filter.sort,
           start: 0
         };
       }
@@ -89,7 +89,7 @@ export default class EventList extends Vue {
       variables: {
         categoryIds: this.filter!.categoryIds,
         cityId: this.city.id,
-        sort: this.filter!.sorting,
+        sort: this.filter!.sort,
         start: this.start
       }
     });
