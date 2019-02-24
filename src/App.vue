@@ -14,7 +14,7 @@
 
     <v-toolbar app color="primary" v-if="!startPage">
       <span class="hidden-sm-and-up">
-        <v-toolbar-side-icon @click="drawerOpen = !drawerOpen"></v-toolbar-side-icon>
+        <v-toolbar-side-icon class="white--text" @click="drawerOpen = !drawerOpen"></v-toolbar-side-icon>
       </span>
 
       <v-toolbar-title>
