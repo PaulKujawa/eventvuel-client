@@ -1,15 +1,19 @@
 <template>
   <v-app>
     <v-navigation-drawer app v-model="drawerOpen">
-      <!-- <v-list>
-        <v-list-tile :to="{name: 'startPage'}">
+      <v-list>
+        <v-list-tile
+          :key="category.title"
+          :to="{name: category.routeName}"
+          v-for="category of categories"
+        >
           <v-list-tile-action>
-            <v-icon>{{ 'room' }}</v-icon>
+            <v-icon>{{ category.icon }}</v-icon>
           </v-list-tile-action>
 
-          <v-list-tile-content>{{ city }}</v-list-tile-content>
+          <v-list-tile-content>{{ category.title }}</v-list-tile-content>
         </v-list-tile>
-      </v-list>-->
+      </v-list>
     </v-navigation-drawer>
 
     <v-toolbar app color="primary" v-if="!startPage">
@@ -21,14 +25,20 @@
         <router-link class="white--text" style="cursor: pointer" tag="span" to="/">{{ appTitle }}</router-link>
       </v-toolbar-title>
 
-      <!-- <v-spacer></v-spacer>
+      <v-spacer></v-spacer>
 
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat :to="{name: 'startPage'}">
-          <v-icon left>room</v-icon>
-          {{ city }}
+        <v-btn
+          class="white--text"
+          flat
+          :key="category.title"
+          :to="{name: category.routeName}"
+          v-for="category of categories"
+        >
+          <v-icon left>{{ category.icon }}</v-icon>
+          {{ category.title }}
         </v-btn>
-      </v-toolbar-items>-->
+      </v-toolbar-items>
     </v-toolbar>
 
     <v-content>
@@ -45,11 +55,13 @@
 </template>
 
 <script lang="ts">
+import { categories as TmCategories } from "@/tm-config";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Route } from "vue-router";
 
 @Component({})
 export default class App extends Vue {
+  public readonly categories = TmCategories;
   public readonly appTitle = "Eventvuel";
   public drawerOpen = false;
   public startPage = true;
