@@ -4,9 +4,15 @@
 
     <v-card-title>
       <div>
-        <h3 class="grey--text">{{ event.name }}</h3>
+        <h3>{{ event.name }}</h3>
       </div>
     </v-card-title>
+
+    <v-card-actions class="grey--text">
+      {{ eventDate }}
+      <v-spacer></v-spacer>
+      {{ price }}
+    </v-card-actions>
   </v-card>
 </template>
 
@@ -17,6 +23,20 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 @Component({})
 export default class EventCard extends Vue {
   @Prop() public readonly event!: any;
+
+  get eventDate(): string {
+    const date = new Date(this.event.eventDate.value);
+
+    return date.toLocaleDateString("de-DE");
+  }
+
+  get price(): string {
+    if (this.event.priceRanges) {
+      return this.event.priceRanges.includingTicketFees.min + "€";
+    }
+
+    return "";
+  }
 
   get imageUrl(): string {
     const { images } = this.event;

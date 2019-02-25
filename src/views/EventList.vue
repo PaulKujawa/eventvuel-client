@@ -36,7 +36,8 @@ import FilterBar, { EventListFilter } from "@/components/FilterBar.vue";
 import * as gqlEventList from "@/graphql/EventList.gql";
 import { store } from "@/store";
 import { categories, Category, City } from "@/tm-config";
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
+import { Route } from "vue-router";
 
 @Component({
   apollo: {
@@ -63,13 +64,13 @@ import { Component, Vue } from "vue-property-decorator";
 export default class EventList extends Vue {
   public filter: EventListFilter | null = null;
   public category: Category = null as any;
-  public city: City = null as any;
+  // tslint:disable-next-line:prefer-object-spread
+  public city: City = Object.assign({}, store.selector.getCity());
   private start = 0;
 
-  public created(): void {
-    this.category = categories.find(cat => cat.routeName === this.$route.name)!;
-    // tslint:disable-next-line:prefer-object-spread
-    this.city = Object.assign({}, store.selector.getCity());
+  @Watch("$route", { immediate: true })
+  public onRouteChanged(to: Route): void {
+    this.category = categories.find(cat => cat.routeName === to.name)!;
   }
 
   public showMore(eventAmount: number) {
