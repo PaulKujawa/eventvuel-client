@@ -11,7 +11,7 @@
         label="All genres"
         multiple
         prepend-icon="filter_list"
-        :value="settings.categoryIds"
+        :value="settings.categoryIds.filter(id => id !== categoryId)"
       ></v-select>
     </v-flex>
 
@@ -68,7 +68,7 @@ export default class FilterBar extends Vue {
   @Watch("$route", { immediate: true })
   public onRouteChanged({ query }: Route) {
     this.settings = {
-      categoryIds: (query.categoryIds as any) || [this.categoryId],
+      categoryIds: [].concat((query.categoryIds as any) || this.categoryId),
       sort: (query.sort as any) || "eventdate"
     };
 
