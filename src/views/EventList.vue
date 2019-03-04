@@ -5,7 +5,7 @@
     </v-flex>
 
     <v-flex>
-      <FilterBar :categoryId="category.id" @filterChange="filter = $event"></FilterBar>
+      <filter-bar :categoryId="category.id" @filterChange="filter = $event"></filter-bar>
     </v-flex>
 
     <v-flex>
@@ -15,7 +15,7 @@
     <template v-if="eventList && eventList.events.length">
       <v-layout row wrap>
         <v-flex v-for="event of eventList.events" :key="event.id" xs12 sm4 md3 lg2>
-          <EventCard :event="event"></EventCard>
+          <event-card :event="event"></event-card>
         </v-flex>
       </v-layout>
 

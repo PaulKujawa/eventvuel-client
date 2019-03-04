@@ -12,7 +12,7 @@
 import { Category } from "@/tm-config";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-@Component({})
+@Component
 export default class CategoryCard extends Vue {
   @Prop() public readonly category!: Category;
 }

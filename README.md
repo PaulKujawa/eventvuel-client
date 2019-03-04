@@ -3,8 +3,10 @@
 # GraphQL client for Ticketmaster
 
 ## Contribute
-* Start with `npm start`
-* GraphQL-TypeScript-Schema can be updated with
+
+- Start with `npm start`
+- GraphQL-TypeScript-Schema can be updated with
+
 ```
 apollo client:codegen \
   --endpoint http://localhost:4000 \
@@ -13,8 +15,13 @@ apollo client:codegen \
 ```
 
 ## tech stack
+
 Vue, Vuetify & SASS, Apollo (GraphQl), TS, Webpack, Prettier & TSLint, Netlify
 
 ## Browser support
-Chrome 68, Edge 17, Firefox 62, Safarie 11
 
+- Chrome 71 - market share
+- Edge 17 - market share
+- Firefox 65 - market share
+- Safari 12.1 - IntersectionObserver
+- iOS Safari 12.2 - IntersectionObserver

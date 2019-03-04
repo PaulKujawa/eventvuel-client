@@ -6,7 +6,7 @@
 
     <v-layout wrap justify-center>
       <v-flex v-for="category of categories" :key="category.title" xs12 sm4 lg3>
-        <CategoryCard :category="category"></CategoryCard>
+        <category-card :category="category"></category-card>
       </v-flex>
     </v-layout>
   </v-layout>
