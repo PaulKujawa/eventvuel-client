@@ -1,6 +1,6 @@
 <template>
   <v-card :hover="true" :href="event.url" :target="'_blank'">
-    <v-img :src="imageUrl"></v-img>
+    <lazy-img :src="imageUrl"></lazy-img>
 
     <v-card-title>
       <div>
@@ -12,9 +12,12 @@
 
 <script lang="ts">
 // import { EventsPage_eventsPage_events } from "@/graphql/__generated__/Eventspage";
+import LazyImg from "@/components/LazyImg.vue";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
-@Component({})
+@Component({
+  components: { LazyImg }
+})
 export default class EventCard extends Vue {
   @Prop() public readonly event!: any;
 
