@@ -1,6 +1,5 @@
 import { store } from "@/store/index";
 import CategoryList from "@/views/CategoryList.vue";
-import EventList from "@/views/EventList.vue";
 import NotFound from "@/views/NotFound.vue";
 import Startpage from "@/views/Startpage.vue";
 import Vue from "vue";
@@ -32,27 +31,24 @@ const router = new Router({
     },
     {
       beforeEnter: cityNavigationGuard,
-      component: EventList,
+      component: () =>
+        import(/* webpackChunkName: "event-list" */ "@/views/EventList.vue"),
       name: "eventListConcerts",
       path: "/concert-events"
     },
     {
       beforeEnter: cityNavigationGuard,
-      component: EventList,
+      component: () =>
+        import(/* webpackChunkName: "event-list" */ "@/views/EventList.vue"),
       name: "eventListSports",
       path: "/sport-events"
     },
     {
       beforeEnter: cityNavigationGuard,
-      component: EventList,
+      component: () =>
+        import(/* webpackChunkName: "event-list" */ "@/views/EventList.vue"),
       name: "eventListArts",
       path: "/art-events"
-    },
-    {
-      component: () =>
-        import(/* webpackChunkName: "event" */ "@/views/Event.vue"),
-      name: "event",
-      path: "/events/:id"
     },
     {
       component: NotFound,
