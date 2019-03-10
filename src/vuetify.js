@@ -41,13 +41,13 @@ Vue.use(Vuetify, {
   },
   theme: {
     // prettier-ignore
-    primary: colors.blueGrey.base, // "#607d8b"
-    secondary: colors.amber.base, // "#ffc107"
-    accent: colors.brown.lighten4, // brown.base = "#795548"
+    primary: colors.blueGrey.base,
+    secondary: colors.amber.base,
+    accent: colors.brown.lighten4,
     // prettier-ignore
-    error: colors.deepOrange.base, // "#ff5722"
-    warning: colors.orange.base, // "#ff9800"
-    info: colors.cyan.base, // "#00bcd4"
-    success: colors.teal.base // "#009688"
+    error: colors.pink.base,
+    warning: colors.orange.base,
+    info: colors.cyan.base,
+    success: colors.teal.base
   }
 });
