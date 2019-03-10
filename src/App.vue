@@ -1,6 +1,6 @@
 <template>
   <v-app :class="{ 'gradient-bg': startPage }">
-    <v-navigation-drawer app v-model="drawerOpen">
+    <v-navigation-drawer app :disable-resize-watcher="true" v-model="drawerOpen">
       <v-list>
         <v-list-tile
           :key="category.title"
