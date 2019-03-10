@@ -24,15 +24,6 @@ export default class Startpage extends Vue {
   public city: City | null = null;
   public cityOptions = cities;
 
-  public mounted(): any {
-    const city = store.selector.getCity();
-
-    if (city) {
-      // tslint:disable-next-line:prefer-object-spread
-      this.city = Object.assign({}, city); // TODO object spread causes TS error
-    }
-  }
-
   public changed(): void {
     store.reducer.setCity(this.city!);
     this.$router.push({ name: "categoryList" });
