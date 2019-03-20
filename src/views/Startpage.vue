@@ -8,24 +8,23 @@
         item-value="id"
         label="Your city"
         return-object
-        v-model="city"
       ></v-select>
     </v-flex>
   </v-layout>
 </template>
 
 <script lang="ts">
-import { store } from "@/store";
 import { cities, City } from "@/tm-config";
 import { Component, Vue } from "vue-property-decorator";
+import { Mutation } from "vuex-class";
 
 @Component({})
 export default class Startpage extends Vue {
-  public city: City | null = null;
+  @Mutation public setCity!: (city: City) => void;
   public cityOptions = cities;
 
-  public changed(): void {
-    store.reducer.setCity(this.city!);
+  public changed(city: City): void {
+    this.setCity(city);
     this.$router.push({ name: "categoryList" });
   }
 }

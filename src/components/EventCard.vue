@@ -28,6 +28,10 @@ export default class EventCard extends Vue {
   @Prop() public readonly event!: any;
 
   get eventDate(): string {
+    if (!this.event.eventDate) {
+      return "";
+    }
+
     const date = new Date(this.event.eventDate.value);
 
     return date.toLocaleDateString("de-DE");

@@ -1,4 +1,4 @@
-import { store } from "@/store";
+import { store } from "@/store/index";
 import CategoryList from "@/views/CategoryList.vue";
 import EventList from "@/views/EventList.vue";
 import NotFound from "@/views/NotFound.vue";
@@ -13,7 +13,7 @@ const cityNavigationGuard: NavigationGuard = (
   _from: Route,
   next: (to?: RawLocation) => void
 ) => {
-  store.selector.getCity() === null ? next({ name: "startPage" }) : next();
+  store.state.cityModule.city === null ? next({ name: "startPage" }) : next();
 };
 
 const router = new Router({

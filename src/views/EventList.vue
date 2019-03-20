@@ -1,7 +1,9 @@
 <template>
   <v-layout column>
     <v-flex>
-      <h1 class="display-2 grey--text text-xs-center">{{ category.title }} in {{ city.name }}</h1>
+      <h1
+        class="display-2 grey--text text-xs-center"
+      >{{ category.title }} in {{ cityState.city.name }}</h1>
     </v-flex>
 
     <v-flex>
@@ -34,10 +36,11 @@
 import EventCard from "@/components/EventCard.vue";
 import FilterBar, { EventListFilter } from "@/components/FilterBar.vue";
 import * as gqlEventList from "@/graphql/EventList.gql";
-import { store } from "@/store";
-import { categories, Category, City } from "@/tm-config";
+import { CityState } from "@/store/city";
+import { categories, Category } from "@/tm-config";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Route } from "vue-router";
+import { State } from "vuex-class";
 
 @Component({
   apollo: {
@@ -49,7 +52,7 @@ import { Route } from "vue-router";
       variables() {
         return {
           categoryIds: this.filter.categoryIds,
-          cityId: this.city.id,
+          cityId: this.cityState.city.id,
           sort: this.filter.sort,
           start: 0
         };
@@ -62,10 +65,9 @@ import { Route } from "vue-router";
   }
 })
 export default class EventList extends Vue {
+  @State("cityModule") public cityState!: CityState;
   public filter: EventListFilter | null = null;
   public category: Category = null as any;
-  // tslint:disable-next-line:prefer-object-spread
-  public city: City = Object.assign({}, store.selector.getCity());
   private start = 0;
 
   @Watch("$route", { immediate: true })
@@ -89,7 +91,7 @@ export default class EventList extends Vue {
       }),
       variables: {
         categoryIds: this.filter!.categoryIds,
-        cityId: this.city.id,
+        cityId: this.cityState.city!.id,
         sort: this.filter!.sort,
         start: this.start
       }
