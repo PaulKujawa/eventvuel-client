@@ -55,7 +55,7 @@
 </template>
 
 <script lang="ts">
-import { categories as TmCategories } from "@/tm-config";
+import { categories as TmCategories } from "@/tm-categories";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Route } from "vue-router";
 

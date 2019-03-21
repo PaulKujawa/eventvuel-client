@@ -34,15 +34,16 @@
 </template>
 
 <script lang="ts">
-export type EventListFilter = {
-  sort: "eventdate" | "onsaledate" | "popularity"; // TODO infer type from tm-config/eventListSortings
-  categoryIds: number[];
-};
-
 import * as gqlSubcategories from "@/graphql/SubCategories.gql";
-import { eventListSortings } from "@/tm-config";
 import { Component, Prop, Vue, Watch } from "vue-property-decorator";
 import { Route } from "vue-router";
+
+type SortOptionId = "eventdate" | "onsaledate" | "popularity";
+
+export type EventListFilter = {
+  sort: SortOptionId;
+  categoryIds: number[];
+};
 
 @Component({
   apollo: {
@@ -63,7 +64,11 @@ import { Route } from "vue-router";
 export default class FilterBar extends Vue {
   @Prop() public readonly categoryId!: number;
   public settings: EventListFilter = null as any;
-  public sortOptions = eventListSortings;
+  public sortOptions: Array<{ id: SortOptionId; title: string }> = [
+    { id: "eventdate", title: "Event Date" },
+    { id: "onsaledate", title: "On-Sale Date" },
+    { id: "popularity", title: "Popularity" }
+  ];
 
   @Watch("$route", { immediate: true })
   public onRouteChanged({ query }: Route) {

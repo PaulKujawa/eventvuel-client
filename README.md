@@ -5,14 +5,8 @@
 ## Contribute
 
 - Start with `npm start`
-- GraphQL-TypeScript-Schema can be updated with
-
-```
-apollo client:codegen \
-  --endpoint http://localhost:4000 \
-  --includes src/**/*.gql \
-  --target typescript
-```
+- Update GraphQL TS types
+  `apollo client:codegen --endpoint="http://localhost:4000" --includes="src/**/*.gql" --target="typescript"`
 
 ## tech stack
 

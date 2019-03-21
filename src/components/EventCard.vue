@@ -17,15 +17,15 @@
 </template>
 
 <script lang="ts">
-// import { EventsPage_eventsPage_events } from "@/graphql/__generated__/Eventspage";
 import LazyImg from "@/components/LazyImg.vue";
+import { EventList_eventList_events } from "@/graphql/__generated__/EventList";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component({
   components: { LazyImg }
 })
 export default class EventCard extends Vue {
-  @Prop() public readonly event!: any;
+  @Prop() public readonly event!: EventList_eventList_events;
 
   get eventDate(): string {
     if (!this.event.eventDate) {

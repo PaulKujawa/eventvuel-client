@@ -15,6 +15,9 @@ const cityNavigationGuard: NavigationGuard = (
   store.state.cityModule.city === null ? next({ name: "startPage" }) : next();
 };
 
+const lazyLoadEventList = () =>
+  import(/* webpackChunkName: "event-list" */ "@/views/EventList.vue");
+
 const router = new Router({
   mode: "history",
   routes: [
@@ -31,22 +34,19 @@ const router = new Router({
     },
     {
       beforeEnter: cityNavigationGuard,
-      component: () =>
-        import(/* webpackChunkName: "event-list" */ "@/views/EventList.vue"),
+      component: lazyLoadEventList,
       name: "eventListConcerts",
       path: "/concert-events"
     },
     {
       beforeEnter: cityNavigationGuard,
-      component: () =>
-        import(/* webpackChunkName: "event-list" */ "@/views/EventList.vue"),
+      component: lazyLoadEventList,
       name: "eventListSports",
       path: "/sport-events"
     },
     {
       beforeEnter: cityNavigationGuard,
-      component: () =>
-        import(/* webpackChunkName: "event-list" */ "@/views/EventList.vue"),
+      component: lazyLoadEventList,
       name: "eventListArts",
       path: "/art-events"
     },
