@@ -30,25 +30,3 @@ export const categories: Category[] = [
     title: "Sport events"
   }
 ];
-
-export const eventListSortings = [
-  { id: "eventdate", title: "Event Date" },
-  { id: "onsaledate", title: "On-Sale Date" },
-  { id: "popularity", title: "Popularity" }
-];
-
-export type City = { id: number; name: string; country_id: number };
-
-// TODO only tentative
-export const cities: City[] = [
-  {
-    country_id: 276,
-    id: 60000,
-    name: "Berlin"
-  },
-  {
-    country_id: 276,
-    id: 60075,
-    name: "Hamburg"
-  }
-];

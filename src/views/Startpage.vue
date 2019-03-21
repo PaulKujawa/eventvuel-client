@@ -14,14 +14,18 @@
 </template>
 
 <script lang="ts">
-import { cities, City } from "@/tm-config";
+import { City } from "@/store/city";
 import { Component, Vue } from "vue-property-decorator";
 import { Mutation } from "vuex-class";
 
 @Component({})
 export default class Startpage extends Vue {
   @Mutation public setCity!: (city: City) => void;
-  public cityOptions = cities;
+  public cityOptions: City[] = [
+    // TODO if ever possible, fetch via API
+    { country_id: 276, id: 60000, name: "Berlin" },
+    { country_id: 276, id: 60075, name: "Hamburg" }
+  ];
 
   public changed(city: City): void {
     this.setCity(city);

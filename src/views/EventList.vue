@@ -37,7 +37,7 @@ import EventCard from "@/components/EventCard.vue";
 import FilterBar, { EventListFilter } from "@/components/FilterBar.vue";
 import * as gqlEventList from "@/graphql/EventList.gql";
 import { CityState } from "@/store/city";
-import { categories, Category } from "@/tm-config";
+import { categories, Category } from "@/tm-categories";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Route } from "vue-router";
 import { State } from "vuex-class";

@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import CategoryCard from "@/components/CategoryCard.vue";
-import { categories as TmCategories } from "@/tm-config";
+import { categories as TmCategories } from "@/tm-categories";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({

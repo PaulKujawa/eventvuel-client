@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Category } from "@/tm-config";
+import { Category } from "@/tm-categories";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
