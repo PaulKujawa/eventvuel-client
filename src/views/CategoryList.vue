@@ -26,3 +26,19 @@ export default class CategoryList extends Vue {
   public readonly categories = TmCategories;
 }
 </script>
+
+<style lang="scss">
+.foo {
+  background-color: orange;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

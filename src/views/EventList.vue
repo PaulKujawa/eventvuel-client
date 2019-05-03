@@ -25,6 +25,7 @@
         <v-btn
           @click="showMore(eventList.events.length)"
           color="secondary"
+          :loading="$apollo.queries.eventList.loading"
           v-if="eventList.hasMore"
         >Gimme more</v-btn>
       </v-flex>
