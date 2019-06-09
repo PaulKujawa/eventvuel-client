@@ -35,7 +35,7 @@
           :to="{name: category.routeName}"
           v-for="category of categories"
         >
-          <v-icon left>{{ category.svgPath }}</v-icon>
+          <v-icon class="white--text" left>{{ category.svgPath }}</v-icon>
           {{ category.title }}
         </v-btn>
       </v-toolbar-items>
