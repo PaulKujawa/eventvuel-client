@@ -2,23 +2,23 @@
   <v-app :class="{ 'gradient-bg': startPage }">
     <v-navigation-drawer app :disable-resize-watcher="true" v-model="drawerOpen">
       <v-list>
-        <v-list-tile
+        <v-list-item
           :key="category.title"
           :to="{name: category.routeName}"
           v-for="category of categories"
         >
-          <v-list-tile-action>
+          <v-list-item-action>
             <v-icon>{{ category.icon }}</v-icon>
-          </v-list-tile-action>
+          </v-list-item-action>
 
-          <v-list-tile-content>{{ category.title }}</v-list-tile-content>
-        </v-list-tile>
+          <v-list-item-content>{{ category.title }}</v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar app color="primary" v-if="!startPage">
+    <v-app-bar app color="primary" v-if="!startPage">
       <span class="hidden-sm-and-up">
-        <v-toolbar-side-icon class="white--text" @click="drawerOpen = !drawerOpen"></v-toolbar-side-icon>
+        <v-app-bar-nav-icon class="white--text" @click="drawerOpen = !drawerOpen"></v-app-bar-nav-icon>
       </span>
 
       <v-toolbar-title>
@@ -30,7 +30,7 @@
       <v-toolbar-items class="hidden-xs-only">
         <v-btn
           class="white--text"
-          flat
+          text
           :key="category.title"
           :to="{name: category.routeName}"
           v-for="category of categories"
@@ -39,7 +39,7 @@
           {{ category.title }}
         </v-btn>
       </v-toolbar-items>
-    </v-toolbar>
+    </v-app-bar>
 
     <v-content>
       <v-container fluid grid-list-lg :fill-height="startPage">

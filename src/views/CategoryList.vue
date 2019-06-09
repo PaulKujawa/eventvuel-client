@@ -28,10 +28,6 @@ export default class CategoryList extends Vue {
 </script>
 
 <style lang="scss">
-.foo {
-  background-color: orange;
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.25s ease-out;

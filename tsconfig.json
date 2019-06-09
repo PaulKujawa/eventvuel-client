@@ -4,6 +4,8 @@
     "module": "esnext",
     "strict": true,
     "importHelpers": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,

@@ -1,7 +1,8 @@
 <template>
   <v-layout wrap>
     <v-flex xs12 sm4>
-      <v-select
+      <v-select :items="options" label="All genres"></v-select>
+      <!-- <v-select
         clearable
         :disabled="!subCategories || !subCategories.length"
         @input="changed('categoryIds', $event)"
@@ -12,7 +13,7 @@
         multiple
         prepend-icon="filter_list"
         :value="settings.categoryIds.filter(id => id !== categoryId)"
-      ></v-select>
+      ></v-select>-->
     </v-flex>
 
     <v-flex xs12 sm4>
@@ -69,6 +70,8 @@ export default class FilterBar extends Vue {
     { id: "onsaledate", title: "On-Sale Date" },
     { id: "popularity", title: "Popularity" }
   ];
+
+  public options = ["a", "b", "c"];
 
   @Watch("$route", { immediate: true })
   public onRouteChanged({ query }: Route) {

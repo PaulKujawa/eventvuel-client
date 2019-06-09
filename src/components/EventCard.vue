@@ -2,16 +2,14 @@
   <v-card :hover="true" :href="event.url" :target="'_blank'">
     <lazy-img :src="imageUrl"></lazy-img>
 
-    <v-card-title>
-      <div>
-        <h3>{{ event.name }}</h3>
-      </div>
-    </v-card-title>
+    <v-card-title>{{ event.name }}</v-card-title>
 
     <v-card-actions class="grey--text">
       {{ eventDate }}
-      <v-spacer></v-spacer>
-      {{ price }}
+      <template v-if="price">
+        <v-spacer></v-spacer>
+        {{ price|price }}
+      </template>
     </v-card-actions>
   </v-card>
 </template>
@@ -37,12 +35,12 @@ export default class EventCard extends Vue {
     return date.toLocaleDateString("de-DE");
   }
 
-  get price(): string {
-    if (this.event.priceRanges) {
-      return this.event.priceRanges.includingTicketFees.min + "€";
+  get price(): number {
+    if (!this.event.priceRanges) {
+      return 0;
     }
 
-    return "";
+    return this.event.priceRanges.includingTicketFees.min;
   }
 
   get imageUrl(): string {
