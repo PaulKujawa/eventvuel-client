@@ -7,6 +7,9 @@ Vue.use(Vuetify);
 
 // TODO vuetify beta has wrong typings
 export default new (Vuetify as any)({
+  icons: {
+    iconfont: 'mdi',
+  },
   theme: {
     themes: {
       light: {
