@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@babel/polyfill": "^7.0.0",
+    "@mdi/js": "^3.6.95",
     "@types/graphql": "^14.0.3",
     "@types/node": "^10.12.1",
     "@vue/cli-plugin-babel": "^3.4.0",

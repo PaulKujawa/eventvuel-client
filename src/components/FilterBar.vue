@@ -70,8 +70,6 @@ export default class FilterBar extends Vue {
     { id: "popularity", title: "Popularity" }
   ];
 
-  public options = ["a", "b", "c"];
-
   @Watch("$route", { immediate: true })
   public onRouteChanged({ query }: Route) {
     this.settings = {

@@ -8,7 +8,7 @@
           v-for="category of categories"
         >
           <v-list-item-action>
-            <v-icon>{{ category.icon }}</v-icon>
+            <v-icon>{{ category.svgPath }}</v-icon>
           </v-list-item-action>
 
           <v-list-item-content>{{ category.title }}</v-list-item-content>
@@ -35,7 +35,7 @@
           :to="{name: category.routeName}"
           v-for="category of categories"
         >
-          <v-icon left>{{ category.icon }}</v-icon>
+          <v-icon left>{{ category.svgPath }}</v-icon>
           {{ category.title }}
         </v-btn>
       </v-toolbar-items>
@@ -55,13 +55,13 @@
 </template>
 
 <script lang="ts">
-import { categories as TmCategories } from "@/tm-categories";
+import { tmCategories } from "@/models/category";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Route } from "vue-router";
 
 @Component({})
 export default class App extends Vue {
-  public readonly categories = TmCategories;
+  public readonly categories = tmCategories;
   public readonly appTitle = "Eventvuel";
   public drawerOpen = false;
   public startPage = true;

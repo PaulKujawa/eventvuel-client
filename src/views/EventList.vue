@@ -37,8 +37,8 @@
 import EventCard from "@/components/EventCard.vue";
 import FilterBar, { EventListFilter } from "@/components/FilterBar.vue";
 import * as gqlEventList from "@/graphql/EventList.gql";
+import { Category, tmCategories } from "@/models/category";
 import { CityState } from "@/store/city";
-import { categories, Category } from "@/tm-categories";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import { Route } from "vue-router";
 import { State } from "vuex-class";
@@ -73,7 +73,7 @@ export default class EventList extends Vue {
 
   @Watch("$route", { immediate: true })
   public onRouteChanged(to: Route): void {
-    this.category = categories.find(cat => cat.routeName === to.name)!;
+    this.category = tmCategories.find(cat => cat.routeName === to.name)!;
   }
 
   public showMore(eventAmount: number) {
