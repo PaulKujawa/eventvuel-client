@@ -10,13 +10,13 @@
         item-value="id"
         label="All genres"
         multiple
-        prepend-icon="filter_list"
+        prepend-icon="mdi-filter-variant"
         :value="settings.categoryIds.filter(id => id !== categoryId)"
       ></v-select>
     </v-flex>
 
     <v-flex xs12 sm4>
-      <v-select :items="[]" disabled label="Select a date - WIP" prepend-icon="date_range"></v-select>
+      <v-select :items="[]" disabled label="Select a date - WIP" prepend-icon="mdi-calendar-range"></v-select>
     </v-flex>
 
     <v-flex x12 sm4>
@@ -26,7 +26,7 @@
         item-value="id"
         :items="sortOptions"
         label="Sort"
-        prepend-icon="sort"
+        prepend-icon="mdi-sort-variant"
         :value="settings.sort"
       ></v-select>
     </v-flex>

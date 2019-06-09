@@ -1,15 +1,15 @@
 <template>
   <v-card color="accent" hover :to="{ name: category.routeName }">
-    <v-img max-height="500px" :src="category.imageUrl"></v-img>
+    <v-img :src="category.imgPath"></v-img>
 
-    <v-card-title>
-      <h3 class="headline text-xs-center">{{ category.title }}</h3>
+    <v-card-title class="justify-center">
+      <h3 class="headline">{{ category.title }}</h3>
     </v-card-title>
   </v-card>
 </template>
 
 <script lang="ts">
-import { Category } from "@/tm-categories";
+import { Category } from "@/models/category";
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component

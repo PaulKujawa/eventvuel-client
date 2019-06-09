@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import CategoryCard from "@/components/CategoryCard.vue";
-import { categories as TmCategories } from "@/tm-categories";
+import { tmCategories } from "@/models/category";
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({
@@ -23,6 +23,6 @@ import { Component, Vue } from "vue-property-decorator";
   }
 })
 export default class CategoryList extends Vue {
-  public readonly categories = TmCategories;
+  public readonly categories = tmCategories;
 }
 </script>

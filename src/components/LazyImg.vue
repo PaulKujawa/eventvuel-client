@@ -9,15 +9,13 @@ import { Component, Prop } from "vue-property-decorator";
 @Component
 export default class LazyImg extends Vue {
   @Prop() public src!: string;
-  public observer: IntersectionObserver = null as any;
-  public intersected = false;
+  private observer: IntersectionObserver = null as any;
+  private intersected = false;
 
   public mounted(): void {
     this.observer = new IntersectionObserver(
-      entries => {
-        const entry = entries[0];
-
-        if (entry.isIntersecting) {
+      ([element]) => {
+        if (element.isIntersecting) {
           this.intersected = true;
           this.observer.disconnect();
         }

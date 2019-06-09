@@ -1,32 +1,34 @@
+import { mdiBike, mdiBrush, mdiMusic } from "@mdi/js";
+
 export type Category = {
-  icon: string;
+  svgPath: string;
   id: number;
-  imageUrl: string;
+  imgPath: string;
   routeName: string;
   title: string;
 };
 
 // free images from pexels.com
-export const categories: Category[] = [
+export const tmCategories: Category[] = [
   {
-    icon: "brush",
     id: 10002,
-    imageUrl: "/images/arts.jpeg",
+    imgPath: "/images/arts.jpeg",
     routeName: "eventListArts",
+    svgPath: mdiBrush,
     title: "Art events"
   },
   {
-    icon: "music_note",
     id: 10001,
-    imageUrl: "/images/concerts.jpeg",
+    imgPath: "/images/concerts.jpeg",
     routeName: "eventListConcerts",
+    svgPath: mdiMusic,
     title: "Concerts"
   },
   {
-    icon: "directions_bike",
     id: 10004,
-    imageUrl: "/images/sports.jpeg",
+    imgPath: "/images/sports.jpeg",
     routeName: "eventListSports",
+    svgPath: mdiBike,
     title: "Sport events"
   }
 ];
