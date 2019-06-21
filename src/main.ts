@@ -1,7 +1,8 @@
 import App from "@/App.vue";
-import "@/filters";
+import "@/filters/index";
 import { createProvider } from "@/plugins/apollo";
 import router from "@/plugins/router";
+import "@/plugins/sentry";
 import vuetify from "@/plugins/vuetify";
 import { store } from "@/store/index";
 import "@babel/polyfill";
