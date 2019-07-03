@@ -9,19 +9,23 @@
 </template>
 
 <script lang="ts">
-import ScreenSizeMixin from "@/mixins/screen-size";
 import { Category } from "@/models/category";
-import { mixins } from "vue-class-component";
-import { Component, Prop, Watch } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class CategoryCard extends mixins(ScreenSizeMixin) {
+export default class CategoryCard extends Vue {
   @Prop() public readonly category!: Category;
-  public imageHeight = 0;
 
-  @Watch("windowWidth", { immediate: true })
-  public onResize(width: number): void {
-    this.imageHeight = width > 960 ? 550 : 400;
+  get imageHeight() {
+    const breakpoint = (this as any).$vuetify.breakpoint;
+
+    if (breakpoint.xl) {
+      return 600;
+    } else if (breakpoint.mdAndUp) {
+      return 550;
+    }
+
+    return 400;
   }
 }
 </script>
